@@ -1,0 +1,145 @@
+{
+  "metadata_version": 4,
+  "dataset_bundle": {
+    "name": "CY-Bench",
+    "release": "1.10",
+    "release_attribution": "user-declared; local archive checksum not compared",
+    "crop": "maize",
+    "country": "Argentina",
+    "country_code": "AR",
+    "local_folder": "AR/maize",
+    "folder_convention": "ISO 3166-1 alpha-2 country code / crop; variable_croptype_country.csv",
+    "release_record": "https://zenodo.org/records/17279151",
+    "repository": "https://github.com/WUR-AI/AgML-CY-Bench"
+  },
+  "version_history": {
+    "1.0": "Dataset submitted to NeurIPS Datasets and Benchmarks; paper discussion: https://openreview.net/forum?id=jkJDNG468g#discussion",
+    "1.1-1.2": "Corrected column-name issues and adm_id mismatches between yield output and predictor inputs.",
+    "1.3": "Added location centroids and administrative polygons; the local CSV extract contains centroid fields, not polygon geometry.",
+    "1.4": "Updated FPAR data for 2023.",
+    "1.5": "Fixed crop-calendar data.",
+    "1.6": "Fixed NDVI time series.",
+    "1.7": "Stored values at three-decimal precision to reduce size.",
+    "1.8": "Filtered invalid yield values.",
+    "1.9": "Added VPD and location; switched ET0 from AQUASTAT-FAO to AgERA5 2.0 (previously AgERA5 1.1).",
+    "1.10": "Added region_area to location, added crop_mask, and fixed an Australia yield error."
+  },
+  "management_scenario": {
+    "code": "mm0",
+    "description": "Maize monoculture with no fertilizer applied",
+    "status": "assumed",
+    "note": "User-provided interpretation of mm0; confirm against dataset documentation.",
+    "scope": "maize source bundle"
+  },
+  "datasets": {
+    "crop_calendar": {
+      "description": "Start and end of growing season",
+      "temporal_resolution": "static",
+      "source": "WorldCereal (Franch et al., 2022)",
+      "documented_columns": ["crop_name", "adm_id", "sos", "eos"],
+      "variables": {
+        "sos": {"definition": "start of crop season", "unit": "day_of_year", "unit_status": "documented"},
+        "eos": {"definition": "end of crop season", "unit": "day_of_year", "unit_status": "documented"},
+        "crosses_calendar_year": {"definition": "season wraps across January 1", "unit": "boolean", "unit_status": "derived", "formula": "sos > eos"}
+      }
+    },
+    "fpar": {
+      "description": "Fraction of absorbed photosynthetically active radiation",
+      "temporal_resolution": "dekadal: periods 1-10, 11-20, 21-31",
+      "source": "European Commission Joint Research Centre (EC-JRC, 2024)",
+      "documented_columns": ["crop_name", "adm_id", "date", "fpar"],
+      "variables": {
+        "fpar": {"definition": "fraction of absorbed photosynthetically active radiation", "unit": "%", "unit_status": "documented"}
+      }
+    },
+    "meteorology": {
+      "description": "Daily meteorological and water-balance observations",
+      "temporal_resolution": "daily",
+      "source": "AgERA5 2.0 (Boogaard et al., 2022); ET0 is AgERA5 in v1.10 (previously AQUASTAT-FAO)",
+      "documented_columns": ["crop_name", "adm_id", "date", "tmin", "tmax", "prec", "rad", "tavg", "et0", "vpd", "cwb"],
+      "variables": {
+        "tmin": {"definition": "minimum temperature", "unit": "degC", "unit_status": "documented"},
+        "tmax": {"definition": "maximum temperature", "unit": "degC", "unit_status": "documented"},
+        "tavg": {"definition": "average temperature", "unit": "degC", "unit_status": "documented"},
+        "prec": {"definition": "precipitation", "unit": "mm", "unit_status": "provisional", "note": "The notation mm0 is treated as the management scenario code; the millimeter unit is inferred and needs source confirmation."},
+        "rad": {"definition": "radiation", "unit": "J m-2 day-1", "unit_status": "documented"},
+        "et0": {"definition": "reference evapotranspiration", "unit": "mm", "unit_status": "documented"},
+        "cwb": {"definition": "crop water balance", "unit": "mm", "unit_status": "documented", "formula": "prec - et0"},
+        "vpd": {"definition": "vapor pressure deficit", "unit": null, "unit_status": "unresolved"}
+      }
+    },
+    "ndvi": {
+      "description": "Normalized difference vegetation index",
+      "temporal_resolution": "approximately weekly",
+      "source": "MOD09CMG (Vermote, 2015)",
+      "documented_columns": ["crop_name", "adm_id", "date", "ndvi"],
+      "variables": {
+        "ndvi": {"definition": "normalized difference vegetation index", "unit": "dimensionless", "unit_status": "documented"}
+      }
+    },
+    "soil": {
+      "description": "Available water capacity, bulk density, and drainage class",
+      "temporal_resolution": "static",
+      "source": "WISE Soil database (Batjes, 2016)",
+      "documented_columns": ["crop_name", "adm_id", "awc", "bulk_density", "drainage_class"],
+      "variables": {
+        "awc": {"definition": "available water capacity; centimeters of available water per meter of soil depth", "unit": "cm m-1", "reported_unit_notation": "c m-1", "unit_status": "documented", "note": "Unit clarified by user as cm m-1."},
+        "bulk_density": {"definition": "bulk density", "unit": "kg dm-3", "unit_status": "documented"},
+        "drainage_class": {"definition": "drainage class code", "unit": null, "unit_status": "categorical_code", "codebook_status": "unresolved"}
+      }
+    },
+    "soil_moisture": {
+      "description": "Surface and root-zone soil moisture",
+      "temporal_resolution": "daily",
+      "source": "GLDAS (Rodell et al., 2004)",
+      "documented_columns": ["crop_name", "adm_id", "date", "ssm", "rsm"],
+      "variables": {
+        "ssm": {"definition": "surface soil moisture", "unit": "kg m-2", "unit_status": "documented"},
+        "rsm": {"definition": "root-zone soil moisture", "unit": "kg m-2", "unit_status": "documented"}
+      }
+    },
+    "yield": {
+      "description": "End-of-season yield statistics; source varies by country/region",
+      "temporal_resolution": "yearly/end of season",
+      "source": "Country- or region-specific sources; AgML-CY-Bench data_preparation references",
+      "documented_columns": ["crop_name", "country_code", "adm_id", "harvest_year", "yield", "harvest_area", "production"],
+      "variables": {
+        "yield": {"definition": "end-of-season yield", "unit": "t ha-1", "unit_status": "documented"},
+        "harvest_area": {"definition": "harvested area", "unit": null, "unit_status": "unresolved"},
+        "production": {"definition": "production", "unit": null, "unit_status": "unresolved"}
+      }
+    },
+    "location": {
+      "description": "Subnational unit centroid and region area",
+      "temporal_resolution": "static",
+      "source": "CY-Bench location export; centroid attributes",
+      "coordinate_reference_system": "unresolved",
+      "documented_columns": ["crop_name", "adm_id", "latitude", "longitude", "region_area"],
+      "variables": {
+        "latitude": {"definition": "latitude of subnational-unit centroid", "unit": "degree", "unit_status": "documented"},
+        "longitude": {"definition": "longitude of subnational-unit centroid", "unit": "degree", "unit_status": "documented"},
+        "region_area": {"definition": "area of subnational unit", "unit": "km2", "unit_status": "documented"}
+      }
+    },
+    "crop_mask": {
+      "description": "Crop area fraction by subnational unit",
+      "temporal_resolution": "static",
+      "source": "WorldCereal (Van Tricht et al., 2023; EC-JRC, 2024), included in CY-Bench v1.10",
+      "documented_columns": ["crop_name", "adm_id", "crop_area", "crop_area_percentage"],
+      "variables": {
+        "crop_area": {"definition": "crop area within subnational unit", "unit": "km2", "unit_status": "documented"},
+        "crop_area_percentage": {"definition": "fraction of subnational-unit area covered by crop", "unit": "%", "unit_status": "documented"}
+      }
+    }
+  },
+  "schema_reconciliation": {
+    "yield": {
+      "observed_in_local_csv_but_absent_from_supplied_schema": ["planting_year", "planting_date", "harvest_date", "planted_area"]
+    },
+    "notes": [
+      "This project uses only the maize/Argentina partition at AR/maize; other crops and countries are out of scope.",
+      "The local v1.10 yield CSV includes planting_year, planting_date, harvest_date, and planted_area beyond the supplied v1.10 schema summary.",
+      "The location coordinate reference system was not provided, and polygon geometry is not present in the local CSV files."
+    ]
+  }
+}

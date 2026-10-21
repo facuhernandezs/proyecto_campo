@@ -1,0 +1,2384 @@
+{
+  "status": "MODEL_FITTED_EXPLORATORY",
+  "input_table": "model_input_candidates_cutoff_50",
+  "target": "target_yield",
+  "target_unit": "t ha-1",
+  "cutoff_pct": 50,
+  "feature_names": [
+    "season_duration_days",
+    "tmax_max_to_cutoff",
+    "diurnal_range_mean_to_cutoff",
+    "cwb_sum_to_cutoff",
+    "et0_sum_to_cutoff",
+    "tavg_mean_last_30d",
+    "cwb_sum_last_30d",
+    "latest_ssm",
+    "latest_rsm",
+    "rsm_mean_last_30d",
+    "latest_ndvi",
+    "ndvi_change_since_first_observation",
+    "latest_fpar",
+    "fpar_mean_to_cutoff",
+    "crop_area_percentage",
+    "bulk_density",
+    "available_water_capacity_cm_m"
+  ],
+  "development_period": [
+    2003,
+    2018
+  ],
+  "rolling_origin_validation_folds": [
+    {
+      "train": [
+        2003,
+        2008
+      ],
+      "validation": [
+        2009,
+        2010
+      ]
+    },
+    {
+      "train": [
+        2003,
+        2010
+      ],
+      "validation": [
+        2011,
+        2012
+      ]
+    },
+    {
+      "train": [
+        2003,
+        2012
+      ],
+      "validation": [
+        2013,
+        2014
+      ]
+    },
+    {
+      "train": [
+        2003,
+        2014
+      ],
+      "validation": [
+        2015,
+        2018
+      ]
+    }
+  ],
+  "selection": {
+    "selected_model": "hist_gradient_boosting",
+    "candidate_best_model": "hist_gradient_boosting",
+    "dummy_baseline_macro_season_mae": 2.0634050780796382,
+    "best_candidate_macro_season_mae": 1.213386945833022,
+    "candidate_beats_dummy": true,
+    "selection_metric": "minimum rolling-origin OOF macro-season MAE",
+    "tie_break": "prefer the simpler fixed estimator"
+  },
+  "rolling_origin_model_comparison": [
+    {
+      "model": "hist_gradient_boosting",
+      "feature_names": [
+        "season_duration_days",
+        "tmax_max_to_cutoff",
+        "diurnal_range_mean_to_cutoff",
+        "cwb_sum_to_cutoff",
+        "et0_sum_to_cutoff",
+        "tavg_mean_last_30d",
+        "cwb_sum_last_30d",
+        "latest_ssm",
+        "latest_rsm",
+        "rsm_mean_last_30d",
+        "latest_ndvi",
+        "ndvi_change_since_first_observation",
+        "latest_fpar",
+        "fpar_mean_to_cutoff",
+        "crop_area_percentage",
+        "bulk_density",
+        "available_water_capacity_cm_m"
+      ],
+      "n": 2838,
+      "n_seasons": 10,
+      "mae": 1.214906442005826,
+      "rmse": 1.585266169908113,
+      "r2": 0.5489296313610934,
+      "macro_season_mae": 1.213386945833022,
+      "season_mae": {
+        "2009": 1.2253926868005287,
+        "2010": 1.0588603051566308,
+        "2011": 0.9946671494756716,
+        "2012": 1.0933938066361037,
+        "2013": 1.4357315504444892,
+        "2014": 1.1883227691311153,
+        "2015": 1.1103096956160097,
+        "2016": 1.4558744483069137,
+        "2017": 1.0396745611432385,
+        "2018": 1.5316424856195174
+      },
+      "folds": [
+        {
+          "train_years": [
+            2003,
+            2008
+          ],
+          "validation_years": [
+            2009,
+            2010
+          ],
+          "n": 600,
+          "n_seasons": 2,
+          "mae": 1.1410162801009538,
+          "rmse": 1.495498691286907,
+          "r2": 0.6716819985845367,
+          "macro_season_mae": 1.1421264959785797,
+          "season_mae": {
+            "2009": 1.2253926868005287,
+            "2010": 1.0588603051566308
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2010
+          ],
+          "validation_years": [
+            2011,
+            2012
+          ],
+          "n": 560,
+          "n_seasons": 2,
+          "mae": 1.0438541804538155,
+          "rmse": 1.3553134450115252,
+          "r2": 0.7034816982855833,
+          "macro_season_mae": 1.0440304780558876,
+          "season_mae": {
+            "2011": 0.9946671494756716,
+            "2012": 1.0933938066361037
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2012
+          ],
+          "validation_years": [
+            2013,
+            2014
+          ],
+          "n": 572,
+          "n_seasons": 2,
+          "mae": 1.3176500866358336,
+          "rmse": 1.6975911554555898,
+          "r2": 0.41376285823363357,
+          "macro_season_mae": 1.3120271597878022,
+          "season_mae": {
+            "2013": 1.4357315504444892,
+            "2014": 1.1883227691311153
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2014
+          ],
+          "validation_years": [
+            2015,
+            2018
+          ],
+          "n": 1106,
+          "n_seasons": 4,
+          "mae": 1.2884634030218163,
+          "rmse": 1.6777264386513913,
+          "r2": 0.28688365814045447,
+          "macro_season_mae": 1.2843752976714198,
+          "season_mae": {
+            "2015": 1.1103096956160097,
+            "2016": 1.4558744483069137,
+            "2017": 1.0396745611432385,
+            "2018": 1.5316424856195174
+          }
+        }
+      ]
+    },
+    {
+      "model": "extra_trees",
+      "feature_names": [
+        "season_duration_days",
+        "tmax_max_to_cutoff",
+        "diurnal_range_mean_to_cutoff",
+        "cwb_sum_to_cutoff",
+        "et0_sum_to_cutoff",
+        "tavg_mean_last_30d",
+        "cwb_sum_last_30d",
+        "latest_ssm",
+        "latest_rsm",
+        "rsm_mean_last_30d",
+        "latest_ndvi",
+        "ndvi_change_since_first_observation",
+        "latest_fpar",
+        "fpar_mean_to_cutoff",
+        "crop_area_percentage",
+        "bulk_density",
+        "available_water_capacity_cm_m"
+      ],
+      "n": 2838,
+      "n_seasons": 10,
+      "mae": 1.2317907299624187,
+      "rmse": 1.5940378346676969,
+      "r2": 0.543924056077668,
+      "macro_season_mae": 1.2305776276253133,
+      "season_mae": {
+        "2009": 1.2792261279201278,
+        "2010": 0.9992084224025973,
+        "2011": 1.053264816142616,
+        "2012": 1.1888006670328475,
+        "2013": 1.443787572800629,
+        "2014": 1.207036187571159,
+        "2015": 1.086517403439702,
+        "2016": 1.47220914950054,
+        "2017": 1.024474994504634,
+        "2018": 1.5512509349382797
+      },
+      "folds": [
+        {
+          "train_years": [
+            2003,
+            2008
+          ],
+          "validation_years": [
+            2009,
+            2010
+          ],
+          "n": 600,
+          "n_seasons": 2,
+          "mae": 1.1373504904579124,
+          "rmse": 1.5063133101865516,
+          "r2": 0.6669164014038196,
+          "macro_season_mae": 1.1392172751613625,
+          "season_mae": {
+            "2009": 1.2792261279201278,
+            "2010": 0.9992084224025973
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2010
+          ],
+          "validation_years": [
+            2011,
+            2012
+          ],
+          "n": 560,
+          "n_seasons": 2,
+          "mae": 1.1207907132825705,
+          "rmse": 1.4375669868408694,
+          "r2": 0.666398348154112,
+          "macro_season_mae": 1.1210327415877317,
+          "season_mae": {
+            "2011": 1.053264816142616,
+            "2012": 1.1888006670328475
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2012
+          ],
+          "validation_years": [
+            2013,
+            2014
+          ],
+          "n": 572,
+          "n_seasons": 2,
+          "mae": 1.3307925934865639,
+          "rmse": 1.6879880489111776,
+          "r2": 0.42037667027062386,
+          "macro_season_mae": 1.325411880185894,
+          "season_mae": {
+            "2013": 1.443787572800629,
+            "2014": 1.207036187571159
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2014
+          ],
+          "validation_years": [
+            2015,
+            2018
+          ],
+          "n": 1106,
+          "n_seasons": 4,
+          "mae": 1.2880249859367472,
+          "rmse": 1.6640953558507838,
+          "r2": 0.29842434706470067,
+          "macro_season_mae": 1.2836131205957888,
+          "season_mae": {
+            "2015": 1.086517403439702,
+            "2016": 1.47220914950054,
+            "2017": 1.024474994504634,
+            "2018": 1.5512509349382797
+          }
+        }
+      ]
+    },
+    {
+      "model": "random_forest",
+      "feature_names": [
+        "season_duration_days",
+        "tmax_max_to_cutoff",
+        "diurnal_range_mean_to_cutoff",
+        "cwb_sum_to_cutoff",
+        "et0_sum_to_cutoff",
+        "tavg_mean_last_30d",
+        "cwb_sum_last_30d",
+        "latest_ssm",
+        "latest_rsm",
+        "rsm_mean_last_30d",
+        "latest_ndvi",
+        "ndvi_change_since_first_observation",
+        "latest_fpar",
+        "fpar_mean_to_cutoff",
+        "crop_area_percentage",
+        "bulk_density",
+        "available_water_capacity_cm_m"
+      ],
+      "n": 2838,
+      "n_seasons": 10,
+      "mae": 1.2520751949094535,
+      "rmse": 1.6195114606869587,
+      "r2": 0.5292308811137091,
+      "macro_season_mae": 1.250544603945796,
+      "season_mae": {
+        "2009": 1.3201893890849312,
+        "2010": 1.0034936993391455,
+        "2011": 1.0586454902754505,
+        "2012": 1.22274858634254,
+        "2013": 1.4894163459588263,
+        "2014": 1.2286029052751266,
+        "2015": 1.1282789594606886,
+        "2016": 1.4616475662055677,
+        "2017": 1.01105535653737,
+        "2018": 1.581367740978313
+      },
+      "folds": [
+        {
+          "train_years": [
+            2003,
+            2008
+          ],
+          "validation_years": [
+            2009,
+            2010
+          ],
+          "n": 600,
+          "n_seasons": 2,
+          "mae": 1.1597302396137332,
+          "rmse": 1.539676489090105,
+          "r2": 0.6519981304885565,
+          "macro_season_mae": 1.1618415442120384,
+          "season_mae": {
+            "2009": 1.3201893890849312,
+            "2010": 1.0034936993391455
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2010
+          ],
+          "validation_years": [
+            2011,
+            2012
+          ],
+          "n": 560,
+          "n_seasons": 2,
+          "mae": 1.140403997066018,
+          "rmse": 1.460344632460258,
+          "r2": 0.6557430408676493,
+          "macro_season_mae": 1.1406970383089954,
+          "season_mae": {
+            "2011": 1.0586454902754505,
+            "2012": 1.22274858634254
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2012
+          ],
+          "validation_years": [
+            2013,
+            2014
+          ],
+          "n": 572,
+          "n_seasons": 2,
+          "mae": 1.3649372038143335,
+          "rmse": 1.7284931244797843,
+          "r2": 0.39222555525717373,
+          "macro_season_mae": 1.3590096256169764,
+          "season_mae": {
+            "2013": 1.4894163459588263,
+            "2014": 1.2286029052751266
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2014
+          ],
+          "validation_years": [
+            2015,
+            2018
+          ],
+          "n": 1106,
+          "n_seasons": 4,
+          "mae": 1.3003444307830203,
+          "rmse": 1.679031426707062,
+          "r2": 0.28577385833627267,
+          "macro_season_mae": 1.2955874057954848,
+          "season_mae": {
+            "2015": 1.1282789594606886,
+            "2016": 1.4616475662055677,
+            "2017": 1.01105535653737,
+            "2018": 1.581367740978313
+          }
+        }
+      ]
+    },
+    {
+      "model": "gradient_boosting_huber",
+      "feature_names": [
+        "season_duration_days",
+        "tmax_max_to_cutoff",
+        "diurnal_range_mean_to_cutoff",
+        "cwb_sum_to_cutoff",
+        "et0_sum_to_cutoff",
+        "tavg_mean_last_30d",
+        "cwb_sum_last_30d",
+        "latest_ssm",
+        "latest_rsm",
+        "rsm_mean_last_30d",
+        "latest_ndvi",
+        "ndvi_change_since_first_observation",
+        "latest_fpar",
+        "fpar_mean_to_cutoff",
+        "crop_area_percentage",
+        "bulk_density",
+        "available_water_capacity_cm_m"
+      ],
+      "n": 2838,
+      "n_seasons": 10,
+      "mae": 1.2874643336165543,
+      "rmse": 1.666888945644312,
+      "r2": 0.5012840614031255,
+      "macro_season_mae": 1.2853671106976212,
+      "season_mae": {
+        "2009": 1.3517434332397673,
+        "2010": 1.0613859348238177,
+        "2011": 1.0705892525722838,
+        "2012": 1.186475075141755,
+        "2013": 1.5965270757645273,
+        "2014": 1.3233390892463857,
+        "2015": 1.105357084527191,
+        "2016": 1.5030376457298245,
+        "2017": 1.055284626903992,
+        "2018": 1.5999318890266683
+      },
+      "folds": [
+        {
+          "train_years": [
+            2003,
+            2008
+          ],
+          "validation_years": [
+            2009,
+            2010
+          ],
+          "n": 600,
+          "n_seasons": 2,
+          "mae": 1.2046289673756863,
+          "rmse": 1.5777517629180609,
+          "r2": 0.6345735583386793,
+          "macro_season_mae": 1.2065646840317925,
+          "season_mae": {
+            "2009": 1.3517434332397673,
+            "2010": 1.0613859348238177
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2010
+          ],
+          "validation_years": [
+            2011,
+            2012
+          ],
+          "n": 560,
+          "n_seasons": 2,
+          "mae": 1.128325224888145,
+          "rmse": 1.497716266498249,
+          "r2": 0.6378978495278008,
+          "macro_season_mae": 1.1285321638570194,
+          "season_mae": {
+            "2011": 1.0705892525722838,
+            "2012": 1.186475075141755
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2012
+          ],
+          "validation_years": [
+            2013,
+            2014
+          ],
+          "n": 572,
+          "n_seasons": 2,
+          "mae": 1.466141900380869,
+          "rmse": 1.8644733001569496,
+          "r2": 0.2928371140454201,
+          "macro_season_mae": 1.4599330825054566,
+          "season_mae": {
+            "2013": 1.5965270757645273,
+            "2014": 1.3233390892463857
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2014
+          ],
+          "validation_years": [
+            2015,
+            2018
+          ],
+          "n": 1106,
+          "n_seasons": 4,
+          "mae": 1.3205706197316014,
+          "rmse": 1.6868999827039963,
+          "r2": 0.2790639220937897,
+          "macro_season_mae": 1.315902811546919,
+          "season_mae": {
+            "2015": 1.105357084527191,
+            "2016": 1.5030376457298245,
+            "2017": 1.055284626903992,
+            "2018": 1.5999318890266683
+          }
+        }
+      ]
+    },
+    {
+      "model": "ridge_alpha10",
+      "feature_names": [
+        "season_duration_days",
+        "tmax_max_to_cutoff",
+        "diurnal_range_mean_to_cutoff",
+        "cwb_sum_to_cutoff",
+        "et0_sum_to_cutoff",
+        "tavg_mean_last_30d",
+        "cwb_sum_last_30d",
+        "latest_ssm",
+        "latest_rsm",
+        "rsm_mean_last_30d",
+        "latest_ndvi",
+        "ndvi_change_since_first_observation",
+        "latest_fpar",
+        "fpar_mean_to_cutoff",
+        "crop_area_percentage",
+        "bulk_density",
+        "available_water_capacity_cm_m"
+      ],
+      "n": 2838,
+      "n_seasons": 10,
+      "mae": 1.5202888390029614,
+      "rmse": 1.9100172715442814,
+      "r2": 0.34519120483954924,
+      "macro_season_mae": 1.5184595499891718,
+      "season_mae": {
+        "2009": 1.6039377784217002,
+        "2010": 1.3523578416233295,
+        "2011": 1.3458759383293093,
+        "2012": 1.3384529397141645,
+        "2013": 1.621204958124202,
+        "2014": 1.4594924878413604,
+        "2015": 1.5401615461300617,
+        "2016": 1.7515958434390573,
+        "2017": 1.1969337585964355,
+        "2018": 1.9745824076720984
+      },
+      "folds": [
+        {
+          "train_years": [
+            2003,
+            2008
+          ],
+          "validation_years": [
+            2009,
+            2010
+          ],
+          "n": 600,
+          "n_seasons": 2,
+          "mae": 1.476470610443859,
+          "rmse": 1.8540961294736986,
+          "r2": 0.49535367449576295,
+          "macro_season_mae": 1.4781478100225147,
+          "season_mae": {
+            "2009": 1.6039377784217002,
+            "2010": 1.3523578416233295
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2010
+          ],
+          "validation_years": [
+            2011,
+            2012
+          ],
+          "n": 560,
+          "n_seasons": 2,
+          "mae": 1.3421776943764065,
+          "rmse": 1.7047631204802587,
+          "r2": 0.5308625596106618,
+          "macro_season_mae": 1.3421644390217369,
+          "season_mae": {
+            "2011": 1.3458759383293093,
+            "2012": 1.3384529397141645
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2012
+          ],
+          "validation_years": [
+            2013,
+            2014
+          ],
+          "n": 572,
+          "n_seasons": 2,
+          "mae": 1.5440240063983004,
+          "rmse": 2.0321988188800173,
+          "r2": 0.15988350515442895,
+          "macro_season_mae": 1.5403487229827812,
+          "season_mae": {
+            "2013": 1.621204958124202,
+            "2014": 1.4594924878413604
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2014
+          ],
+          "validation_years": [
+            2015,
+            2018
+          ],
+          "n": 1106,
+          "n_seasons": 4,
+          "mae": 1.6219675572454548,
+          "rmse": 1.9720345826745969,
+          "r2": 0.014748407808082953,
+          "macro_season_mae": 1.615818388959413,
+          "season_mae": {
+            "2015": 1.5401615461300617,
+            "2016": 1.7515958434390573,
+            "2017": 1.1969337585964355,
+            "2018": 1.9745824076720984
+          }
+        }
+      ]
+    },
+    {
+      "model": "dummy_median",
+      "feature_names": [
+        "season_duration_days",
+        "tmax_max_to_cutoff",
+        "diurnal_range_mean_to_cutoff",
+        "cwb_sum_to_cutoff",
+        "et0_sum_to_cutoff",
+        "tavg_mean_last_30d",
+        "cwb_sum_last_30d",
+        "latest_ssm",
+        "latest_rsm",
+        "rsm_mean_last_30d",
+        "latest_ndvi",
+        "ndvi_change_since_first_observation",
+        "latest_fpar",
+        "fpar_mean_to_cutoff",
+        "crop_area_percentage",
+        "bulk_density",
+        "available_water_capacity_cm_m"
+      ],
+      "n": 2838,
+      "n_seasons": 10,
+      "mae": 2.065026779422128,
+      "rmse": 2.517733021030377,
+      "r2": -0.13778254528874867,
+      "macro_season_mae": 2.0634050780796382,
+      "season_mae": {
+        "2009": 2.6622533783783786,
+        "2010": 1.774049342105263,
+        "2011": 1.5782740213523134,
+        "2012": 2.5765197132616486,
+        "2013": 1.9041705685618728,
+        "2014": 2.174582417582418,
+        "2015": 2.037322344322344,
+        "2016": 2.299264705882353,
+        "2017": 1.3547970479704796,
+        "2018": 2.27281724137931
+      },
+      "folds": [
+        {
+          "train_years": [
+            2003,
+            2008
+          ],
+          "validation_years": [
+            2009,
+            2010
+          ],
+          "n": 600,
+          "n_seasons": 2,
+          "mae": 2.21223,
+          "rmse": 2.72500342079296,
+          "r2": -0.09007586546604052,
+          "macro_season_mae": 2.218151360241821,
+          "season_mae": {
+            "2009": 2.6622533783783786,
+            "2010": 1.774049342105263
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2010
+          ],
+          "validation_years": [
+            2011,
+            2012
+          ],
+          "n": 560,
+          "n_seasons": 2,
+          "mae": 2.075614285714286,
+          "rmse": 2.489273781074082,
+          "r2": -0.000270222780255569,
+          "macro_season_mae": 2.077396867306981,
+          "season_mae": {
+            "2011": 1.5782740213523134,
+            "2012": 2.5765197132616486
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2012
+          ],
+          "validation_years": [
+            2013,
+            2014
+          ],
+          "n": 572,
+          "n_seasons": 2,
+          "mae": 2.0332307692307694,
+          "rmse": 2.484137067882522,
+          "r2": -0.2553309406583766,
+          "macro_season_mae": 2.0393764930721456,
+          "season_mae": {
+            "2013": 1.9041705685618728,
+            "2014": 2.174582417582418
+          }
+        },
+        {
+          "train_years": [
+            2003,
+            2014
+          ],
+          "validation_years": [
+            2015,
+            2018
+          ],
+          "n": 1106,
+          "n_seasons": 4,
+          "mae": 1.996253164556962,
+          "rmse": 2.4307461806151305,
+          "r2": -0.4969156056787696,
+          "macro_season_mae": 1.9910503348886217,
+          "season_mae": {
+            "2015": 2.037322344322344,
+            "2016": 2.299264705882353,
+            "2017": 1.3547970479704796,
+            "2018": 2.27281724137931
+          }
+        }
+      ]
+    }
+  ],
+  "exploratory_holdout_metrics": {
+    "n": 1186,
+    "n_seasons": 4,
+    "mae": 1.4066466354337346,
+    "rmse": 1.7856625218134619,
+    "r2": 0.20463237937178003,
+    "macro_season_mae": 1.4079507857419629,
+    "season_mae": {
+      "2019": 1.5367712034209675,
+      "2020": 1.5157958897437451,
+      "2021": 1.3223459498725414,
+      "2022": 1.2568900999305974
+    },
+    "negative_predictions": 0
+  },
+  "exploratory_holdout_dummy_baseline": {
+    "n": 1186,
+    "n_seasons": 4,
+    "mae": 1.6372967959527822,
+    "rmse": 2.0124313958748674,
+    "r2": -0.010209173641106517,
+    "macro_season_mae": 1.6379373604481926,
+    "season_mae": {
+      "2019": 1.728904109589041,
+      "2020": 1.702891156462585,
+      "2021": 1.649413907284768,
+      "2022": 1.4705402684563758
+    }
+  },
+  "exploratory_holdout_region_metrics": {
+    "regions": 303,
+    "median_mae": 1.236773216297409,
+    "p90_mae": 2.503609373006508,
+    "per_region": [
+      {
+        "administrative_unit_key": 16,
+        "campaigns": 4,
+        "mae": 1.835849026961459
+      },
+      {
+        "administrative_unit_key": 17,
+        "campaigns": 4,
+        "mae": 1.9723897273095905
+      },
+      {
+        "administrative_unit_key": 18,
+        "campaigns": 4,
+        "mae": 1.394120484515611
+      },
+      {
+        "administrative_unit_key": 21,
+        "campaigns": 4,
+        "mae": 0.8041267303630846
+      },
+      {
+        "administrative_unit_key": 22,
+        "campaigns": 4,
+        "mae": 0.9856124662777435
+      },
+      {
+        "administrative_unit_key": 23,
+        "campaigns": 4,
+        "mae": 1.4224340349323317
+      },
+      {
+        "administrative_unit_key": 24,
+        "campaigns": 4,
+        "mae": 0.901397537836437
+      },
+      {
+        "administrative_unit_key": 25,
+        "campaigns": 4,
+        "mae": 0.7439783178736685
+      },
+      {
+        "administrative_unit_key": 26,
+        "campaigns": 4,
+        "mae": 0.5759928550059661
+      },
+      {
+        "administrative_unit_key": 27,
+        "campaigns": 4,
+        "mae": 1.0894749810641728
+      },
+      {
+        "administrative_unit_key": 30,
+        "campaigns": 4,
+        "mae": 0.7591283963949842
+      },
+      {
+        "administrative_unit_key": 31,
+        "campaigns": 4,
+        "mae": 1.2769825232526195
+      },
+      {
+        "administrative_unit_key": 32,
+        "campaigns": 4,
+        "mae": 1.4757509274426142
+      },
+      {
+        "administrative_unit_key": 33,
+        "campaigns": 4,
+        "mae": 1.2053854916986253
+      },
+      {
+        "administrative_unit_key": 34,
+        "campaigns": 4,
+        "mae": 1.286823812473469
+      },
+      {
+        "administrative_unit_key": 35,
+        "campaigns": 4,
+        "mae": 0.8849139017451741
+      },
+      {
+        "administrative_unit_key": 36,
+        "campaigns": 4,
+        "mae": 2.3961916108350207
+      },
+      {
+        "administrative_unit_key": 37,
+        "campaigns": 4,
+        "mae": 0.9354549172937692
+      },
+      {
+        "administrative_unit_key": 38,
+        "campaigns": 4,
+        "mae": 0.6144604194503349
+      },
+      {
+        "administrative_unit_key": 39,
+        "campaigns": 4,
+        "mae": 1.0982502435928043
+      },
+      {
+        "administrative_unit_key": 40,
+        "campaigns": 4,
+        "mae": 0.35630834225194197
+      },
+      {
+        "administrative_unit_key": 41,
+        "campaigns": 4,
+        "mae": 1.7092141126884333
+      },
+      {
+        "administrative_unit_key": 42,
+        "campaigns": 4,
+        "mae": 1.2054446725254038
+      },
+      {
+        "administrative_unit_key": 43,
+        "campaigns": 4,
+        "mae": 1.1212696824281336
+      },
+      {
+        "administrative_unit_key": 44,
+        "campaigns": 4,
+        "mae": 1.8997788988926414
+      },
+      {
+        "administrative_unit_key": 45,
+        "campaigns": 4,
+        "mae": 0.7024968685924216
+      },
+      {
+        "administrative_unit_key": 48,
+        "campaigns": 4,
+        "mae": 1.3503296256351915
+      },
+      {
+        "administrative_unit_key": 49,
+        "campaigns": 4,
+        "mae": 0.9402920842653177
+      },
+      {
+        "administrative_unit_key": 50,
+        "campaigns": 4,
+        "mae": 4.897467752762507
+      },
+      {
+        "administrative_unit_key": 54,
+        "campaigns": 4,
+        "mae": 0.852443575652382
+      },
+      {
+        "administrative_unit_key": 57,
+        "campaigns": 4,
+        "mae": 1.172586694349528
+      },
+      {
+        "administrative_unit_key": 58,
+        "campaigns": 4,
+        "mae": 1.4583683559997715
+      },
+      {
+        "administrative_unit_key": 59,
+        "campaigns": 4,
+        "mae": 0.7866587969031817
+      },
+      {
+        "administrative_unit_key": 60,
+        "campaigns": 4,
+        "mae": 0.3938236551051495
+      },
+      {
+        "administrative_unit_key": 61,
+        "campaigns": 4,
+        "mae": 0.42278509676055287
+      },
+      {
+        "administrative_unit_key": 62,
+        "campaigns": 4,
+        "mae": 1.1398154817907262
+      },
+      {
+        "administrative_unit_key": 63,
+        "campaigns": 4,
+        "mae": 1.467539923350927
+      },
+      {
+        "administrative_unit_key": 64,
+        "campaigns": 4,
+        "mae": 0.9273908771605468
+      },
+      {
+        "administrative_unit_key": 65,
+        "campaigns": 4,
+        "mae": 1.5777998291716064
+      },
+      {
+        "administrative_unit_key": 66,
+        "campaigns": 4,
+        "mae": 1.9731410826481512
+      },
+      {
+        "administrative_unit_key": 67,
+        "campaigns": 4,
+        "mae": 1.106534133360413
+      },
+      {
+        "administrative_unit_key": 68,
+        "campaigns": 4,
+        "mae": 0.7837980438089707
+      },
+      {
+        "administrative_unit_key": 69,
+        "campaigns": 4,
+        "mae": 1.4788499236866324
+      },
+      {
+        "administrative_unit_key": 70,
+        "campaigns": 4,
+        "mae": 1.5381932495832464
+      },
+      {
+        "administrative_unit_key": 72,
+        "campaigns": 4,
+        "mae": 0.8248086853070073
+      },
+      {
+        "administrative_unit_key": 73,
+        "campaigns": 4,
+        "mae": 0.9492154388719698
+      },
+      {
+        "administrative_unit_key": 74,
+        "campaigns": 4,
+        "mae": 1.07895259578863
+      },
+      {
+        "administrative_unit_key": 75,
+        "campaigns": 4,
+        "mae": 0.6031614895133657
+      },
+      {
+        "administrative_unit_key": 79,
+        "campaigns": 4,
+        "mae": 0.8489227022564132
+      },
+      {
+        "administrative_unit_key": 83,
+        "campaigns": 4,
+        "mae": 1.8334823475595188
+      },
+      {
+        "administrative_unit_key": 84,
+        "campaigns": 4,
+        "mae": 1.5710432841208872
+      },
+      {
+        "administrative_unit_key": 85,
+        "campaigns": 4,
+        "mae": 0.6131755808216548
+      },
+      {
+        "administrative_unit_key": 86,
+        "campaigns": 4,
+        "mae": 1.0421651143265893
+      },
+      {
+        "administrative_unit_key": 88,
+        "campaigns": 4,
+        "mae": 0.8764694888056013
+      },
+      {
+        "administrative_unit_key": 89,
+        "campaigns": 4,
+        "mae": 1.0222025977997762
+      },
+      {
+        "administrative_unit_key": 90,
+        "campaigns": 4,
+        "mae": 0.6003519668501525
+      },
+      {
+        "administrative_unit_key": 92,
+        "campaigns": 4,
+        "mae": 1.2394210000792927
+      },
+      {
+        "administrative_unit_key": 93,
+        "campaigns": 4,
+        "mae": 1.3168514476963775
+      },
+      {
+        "administrative_unit_key": 94,
+        "campaigns": 4,
+        "mae": 1.1705582683858875
+      },
+      {
+        "administrative_unit_key": 96,
+        "campaigns": 4,
+        "mae": 1.4885581652621434
+      },
+      {
+        "administrative_unit_key": 97,
+        "campaigns": 4,
+        "mae": 1.3244138326379105
+      },
+      {
+        "administrative_unit_key": 98,
+        "campaigns": 4,
+        "mae": 1.3350862155734489
+      },
+      {
+        "administrative_unit_key": 100,
+        "campaigns": 4,
+        "mae": 0.5618128122816193
+      },
+      {
+        "administrative_unit_key": 104,
+        "campaigns": 4,
+        "mae": 0.8590260938731911
+      },
+      {
+        "administrative_unit_key": 105,
+        "campaigns": 4,
+        "mae": 1.3485523043341134
+      },
+      {
+        "administrative_unit_key": 106,
+        "campaigns": 4,
+        "mae": 1.1480763241108984
+      },
+      {
+        "administrative_unit_key": 107,
+        "campaigns": 4,
+        "mae": 1.4461349652099043
+      },
+      {
+        "administrative_unit_key": 108,
+        "campaigns": 4,
+        "mae": 3.1598968279215676
+      },
+      {
+        "administrative_unit_key": 109,
+        "campaigns": 4,
+        "mae": 0.6480484304316974
+      },
+      {
+        "administrative_unit_key": 110,
+        "campaigns": 4,
+        "mae": 1.688306375266974
+      },
+      {
+        "administrative_unit_key": 111,
+        "campaigns": 4,
+        "mae": 0.7181669851245531
+      },
+      {
+        "administrative_unit_key": 112,
+        "campaigns": 4,
+        "mae": 1.2101627495449734
+      },
+      {
+        "administrative_unit_key": 113,
+        "campaigns": 4,
+        "mae": 1.0768749052051148
+      },
+      {
+        "administrative_unit_key": 116,
+        "campaigns": 4,
+        "mae": 0.8169699165437454
+      },
+      {
+        "administrative_unit_key": 117,
+        "campaigns": 4,
+        "mae": 1.2857545457595174
+      },
+      {
+        "administrative_unit_key": 119,
+        "campaigns": 4,
+        "mae": 0.9181539550583824
+      },
+      {
+        "administrative_unit_key": 120,
+        "campaigns": 4,
+        "mae": 0.8368202648364811
+      },
+      {
+        "administrative_unit_key": 121,
+        "campaigns": 4,
+        "mae": 1.1199262689730893
+      },
+      {
+        "administrative_unit_key": 122,
+        "campaigns": 4,
+        "mae": 0.6696610473720397
+      },
+      {
+        "administrative_unit_key": 123,
+        "campaigns": 4,
+        "mae": 0.45852890070373853
+      },
+      {
+        "administrative_unit_key": 124,
+        "campaigns": 4,
+        "mae": 0.4017566338370617
+      },
+      {
+        "administrative_unit_key": 125,
+        "campaigns": 4,
+        "mae": 0.5801021109805593
+      },
+      {
+        "administrative_unit_key": 126,
+        "campaigns": 4,
+        "mae": 0.3432305270687819
+      },
+      {
+        "administrative_unit_key": 127,
+        "campaigns": 4,
+        "mae": 1.830091492558847
+      },
+      {
+        "administrative_unit_key": 128,
+        "campaigns": 4,
+        "mae": 0.07664572279011739
+      },
+      {
+        "administrative_unit_key": 129,
+        "campaigns": 4,
+        "mae": 0.5736995903934543
+      },
+      {
+        "administrative_unit_key": 130,
+        "campaigns": 4,
+        "mae": 0.7525780468300889
+      },
+      {
+        "administrative_unit_key": 134,
+        "campaigns": 4,
+        "mae": 1.138776588516131
+      },
+      {
+        "administrative_unit_key": 135,
+        "campaigns": 4,
+        "mae": 0.7273898037336688
+      },
+      {
+        "administrative_unit_key": 136,
+        "campaigns": 4,
+        "mae": 1.4914350875877915
+      },
+      {
+        "administrative_unit_key": 137,
+        "campaigns": 4,
+        "mae": 0.9995621176324023
+      },
+      {
+        "administrative_unit_key": 138,
+        "campaigns": 4,
+        "mae": 0.9365607983596753
+      },
+      {
+        "administrative_unit_key": 139,
+        "campaigns": 4,
+        "mae": 0.8870216617822351
+      },
+      {
+        "administrative_unit_key": 141,
+        "campaigns": 4,
+        "mae": 4.4195577431089355
+      },
+      {
+        "administrative_unit_key": 142,
+        "campaigns": 4,
+        "mae": 0.43326731152211373
+      },
+      {
+        "administrative_unit_key": 143,
+        "campaigns": 4,
+        "mae": 1.4804183261920794
+      },
+      {
+        "administrative_unit_key": 144,
+        "campaigns": 4,
+        "mae": 1.0827338810909708
+      },
+      {
+        "administrative_unit_key": 146,
+        "campaigns": 4,
+        "mae": 1.5982411387763984
+      },
+      {
+        "administrative_unit_key": 147,
+        "campaigns": 4,
+        "mae": 0.7575612474406841
+      },
+      {
+        "administrative_unit_key": 150,
+        "campaigns": 4,
+        "mae": 2.081975308953482
+      },
+      {
+        "administrative_unit_key": 151,
+        "campaigns": 4,
+        "mae": 1.5474755017713795
+      },
+      {
+        "administrative_unit_key": 158,
+        "campaigns": 2,
+        "mae": 1.9136771880651742
+      },
+      {
+        "administrative_unit_key": 160,
+        "campaigns": 4,
+        "mae": 1.7157605760822197
+      },
+      {
+        "administrative_unit_key": 166,
+        "campaigns": 4,
+        "mae": 0.7950619794191394
+      },
+      {
+        "administrative_unit_key": 169,
+        "campaigns": 4,
+        "mae": 0.7793900548263555
+      },
+      {
+        "administrative_unit_key": 170,
+        "campaigns": 4,
+        "mae": 1.5271487342233905
+      },
+      {
+        "administrative_unit_key": 171,
+        "campaigns": 4,
+        "mae": 1.2200375779601695
+      },
+      {
+        "administrative_unit_key": 172,
+        "campaigns": 3,
+        "mae": 2.8510739781274097
+      },
+      {
+        "administrative_unit_key": 173,
+        "campaigns": 4,
+        "mae": 0.8498180062570362
+      },
+      {
+        "administrative_unit_key": 174,
+        "campaigns": 4,
+        "mae": 1.3089832569024908
+      },
+      {
+        "administrative_unit_key": 175,
+        "campaigns": 4,
+        "mae": 2.118753777898382
+      },
+      {
+        "administrative_unit_key": 176,
+        "campaigns": 4,
+        "mae": 1.1514948588198723
+      },
+      {
+        "administrative_unit_key": 177,
+        "campaigns": 4,
+        "mae": 1.390862315323251
+      },
+      {
+        "administrative_unit_key": 179,
+        "campaigns": 4,
+        "mae": 1.0383791740268433
+      },
+      {
+        "administrative_unit_key": 180,
+        "campaigns": 4,
+        "mae": 1.6246300809738008
+      },
+      {
+        "administrative_unit_key": 182,
+        "campaigns": 4,
+        "mae": 0.9652105705878092
+      },
+      {
+        "administrative_unit_key": 183,
+        "campaigns": 4,
+        "mae": 1.6144728024181112
+      },
+      {
+        "administrative_unit_key": 184,
+        "campaigns": 4,
+        "mae": 1.650247155173248
+      },
+      {
+        "administrative_unit_key": 185,
+        "campaigns": 4,
+        "mae": 1.1778953115745034
+      },
+      {
+        "administrative_unit_key": 186,
+        "campaigns": 4,
+        "mae": 1.7488828214813228
+      },
+      {
+        "administrative_unit_key": 187,
+        "campaigns": 4,
+        "mae": 1.4970544164474415
+      },
+      {
+        "administrative_unit_key": 188,
+        "campaigns": 4,
+        "mae": 1.236773216297409
+      },
+      {
+        "administrative_unit_key": 189,
+        "campaigns": 4,
+        "mae": 1.4036032598765484
+      },
+      {
+        "administrative_unit_key": 191,
+        "campaigns": 4,
+        "mae": 1.179429406671375
+      },
+      {
+        "administrative_unit_key": 192,
+        "campaigns": 4,
+        "mae": 1.747010473238403
+      },
+      {
+        "administrative_unit_key": 193,
+        "campaigns": 4,
+        "mae": 1.7294821442341064
+      },
+      {
+        "administrative_unit_key": 194,
+        "campaigns": 4,
+        "mae": 1.1474928989319988
+      },
+      {
+        "administrative_unit_key": 196,
+        "campaigns": 4,
+        "mae": 3.2663742089238776
+      },
+      {
+        "administrative_unit_key": 197,
+        "campaigns": 4,
+        "mae": 2.978425891089845
+      },
+      {
+        "administrative_unit_key": 198,
+        "campaigns": 4,
+        "mae": 3.1532151177297383
+      },
+      {
+        "administrative_unit_key": 199,
+        "campaigns": 4,
+        "mae": 3.4195716998320194
+      },
+      {
+        "administrative_unit_key": 200,
+        "campaigns": 4,
+        "mae": 2.3365982457027092
+      },
+      {
+        "administrative_unit_key": 201,
+        "campaigns": 4,
+        "mae": 3.2720269406567155
+      },
+      {
+        "administrative_unit_key": 202,
+        "campaigns": 4,
+        "mae": 3.031093135228071
+      },
+      {
+        "administrative_unit_key": 205,
+        "campaigns": 4,
+        "mae": 3.6881782005029518
+      },
+      {
+        "administrative_unit_key": 206,
+        "campaigns": 1,
+        "mae": 4.997718636028992
+      },
+      {
+        "administrative_unit_key": 207,
+        "campaigns": 4,
+        "mae": 3.552371954166895
+      },
+      {
+        "administrative_unit_key": 208,
+        "campaigns": 4,
+        "mae": 3.2558857516834196
+      },
+      {
+        "administrative_unit_key": 210,
+        "campaigns": 4,
+        "mae": 1.4407259826977983
+      },
+      {
+        "administrative_unit_key": 212,
+        "campaigns": 4,
+        "mae": 3.023972040115865
+      },
+      {
+        "administrative_unit_key": 213,
+        "campaigns": 4,
+        "mae": 3.420238952959496
+      },
+      {
+        "administrative_unit_key": 215,
+        "campaigns": 4,
+        "mae": 3.5014521792313897
+      },
+      {
+        "administrative_unit_key": 216,
+        "campaigns": 4,
+        "mae": 2.5688334176266503
+      },
+      {
+        "administrative_unit_key": 217,
+        "campaigns": 4,
+        "mae": 3.925192197134068
+      },
+      {
+        "administrative_unit_key": 218,
+        "campaigns": 4,
+        "mae": 3.0851526066941988
+      },
+      {
+        "administrative_unit_key": 219,
+        "campaigns": 4,
+        "mae": 2.5232425077455156
+      },
+      {
+        "administrative_unit_key": 220,
+        "campaigns": 4,
+        "mae": 2.0711738279249614
+      },
+      {
+        "administrative_unit_key": 221,
+        "campaigns": 4,
+        "mae": 0.7321078746048912
+      },
+      {
+        "administrative_unit_key": 223,
+        "campaigns": 4,
+        "mae": 1.080886005567031
+      },
+      {
+        "administrative_unit_key": 224,
+        "campaigns": 4,
+        "mae": 0.7155118605278837
+      },
+      {
+        "administrative_unit_key": 225,
+        "campaigns": 4,
+        "mae": 0.41919565472913
+      },
+      {
+        "administrative_unit_key": 226,
+        "campaigns": 4,
+        "mae": 0.5047464461939548
+      },
+      {
+        "administrative_unit_key": 227,
+        "campaigns": 4,
+        "mae": 0.7765337774563397
+      },
+      {
+        "administrative_unit_key": 228,
+        "campaigns": 4,
+        "mae": 0.5816389231935919
+      },
+      {
+        "administrative_unit_key": 230,
+        "campaigns": 4,
+        "mae": 0.8838099636125144
+      },
+      {
+        "administrative_unit_key": 231,
+        "campaigns": 4,
+        "mae": 0.9134103926213564
+      },
+      {
+        "administrative_unit_key": 233,
+        "campaigns": 4,
+        "mae": 0.9574017114449006
+      },
+      {
+        "administrative_unit_key": 234,
+        "campaigns": 4,
+        "mae": 0.5904885506041239
+      },
+      {
+        "administrative_unit_key": 235,
+        "campaigns": 4,
+        "mae": 0.6764674276662109
+      },
+      {
+        "administrative_unit_key": 236,
+        "campaigns": 4,
+        "mae": 0.613904562304182
+      },
+      {
+        "administrative_unit_key": 237,
+        "campaigns": 4,
+        "mae": 0.8765169663599746
+      },
+      {
+        "administrative_unit_key": 238,
+        "campaigns": 4,
+        "mae": 0.6484772647460078
+      },
+      {
+        "administrative_unit_key": 240,
+        "campaigns": 4,
+        "mae": 1.505901598458685
+      },
+      {
+        "administrative_unit_key": 241,
+        "campaigns": 3,
+        "mae": 0.839192751693116
+      },
+      {
+        "administrative_unit_key": 242,
+        "campaigns": 4,
+        "mae": 0.7745434078985428
+      },
+      {
+        "administrative_unit_key": 243,
+        "campaigns": 4,
+        "mae": 0.9900215821565864
+      },
+      {
+        "administrative_unit_key": 245,
+        "campaigns": 4,
+        "mae": 1.3085731433793706
+      },
+      {
+        "administrative_unit_key": 261,
+        "campaigns": 4,
+        "mae": 0.8078051543993987
+      },
+      {
+        "administrative_unit_key": 262,
+        "campaigns": 4,
+        "mae": 0.5021274993264981
+      },
+      {
+        "administrative_unit_key": 263,
+        "campaigns": 4,
+        "mae": 0.450875868209364
+      },
+      {
+        "administrative_unit_key": 264,
+        "campaigns": 4,
+        "mae": 0.6390021764267027
+      },
+      {
+        "administrative_unit_key": 265,
+        "campaigns": 4,
+        "mae": 0.3578459767489697
+      },
+      {
+        "administrative_unit_key": 266,
+        "campaigns": 4,
+        "mae": 0.5851223751702198
+      },
+      {
+        "administrative_unit_key": 267,
+        "campaigns": 4,
+        "mae": 0.8659178487809305
+      },
+      {
+        "administrative_unit_key": 268,
+        "campaigns": 4,
+        "mae": 1.0026066638586784
+      },
+      {
+        "administrative_unit_key": 270,
+        "campaigns": 4,
+        "mae": 0.47391506166390707
+      },
+      {
+        "administrative_unit_key": 271,
+        "campaigns": 4,
+        "mae": 1.3071941704023302
+      },
+      {
+        "administrative_unit_key": 272,
+        "campaigns": 4,
+        "mae": 0.3538287053210877
+      },
+      {
+        "administrative_unit_key": 273,
+        "campaigns": 4,
+        "mae": 0.8460357745349346
+      },
+      {
+        "administrative_unit_key": 274,
+        "campaigns": 4,
+        "mae": 1.0290029224526873
+      },
+      {
+        "administrative_unit_key": 275,
+        "campaigns": 4,
+        "mae": 0.8666478499851938
+      },
+      {
+        "administrative_unit_key": 276,
+        "campaigns": 4,
+        "mae": 0.8968568161665639
+      },
+      {
+        "administrative_unit_key": 277,
+        "campaigns": 4,
+        "mae": 0.9881236119179395
+      },
+      {
+        "administrative_unit_key": 279,
+        "campaigns": 1,
+        "mae": 0.7823874245284608
+      },
+      {
+        "administrative_unit_key": 280,
+        "campaigns": 2,
+        "mae": 2.3071614436829595
+      },
+      {
+        "administrative_unit_key": 281,
+        "campaigns": 2,
+        "mae": 1.5526492430920997
+      },
+      {
+        "administrative_unit_key": 283,
+        "campaigns": 2,
+        "mae": 1.1591533585634366
+      },
+      {
+        "administrative_unit_key": 284,
+        "campaigns": 2,
+        "mae": 0.8849273904071449
+      },
+      {
+        "administrative_unit_key": 285,
+        "campaigns": 2,
+        "mae": 2.0876867329654223
+      },
+      {
+        "administrative_unit_key": 286,
+        "campaigns": 2,
+        "mae": 0.2016224731266476
+      },
+      {
+        "administrative_unit_key": 289,
+        "campaigns": 4,
+        "mae": 1.5775151312390086
+      },
+      {
+        "administrative_unit_key": 290,
+        "campaigns": 4,
+        "mae": 1.0423348552327552
+      },
+      {
+        "administrative_unit_key": 292,
+        "campaigns": 4,
+        "mae": 1.052150635968978
+      },
+      {
+        "administrative_unit_key": 293,
+        "campaigns": 4,
+        "mae": 0.9127807255479875
+      },
+      {
+        "administrative_unit_key": 295,
+        "campaigns": 4,
+        "mae": 1.3246104808096548
+      },
+      {
+        "administrative_unit_key": 296,
+        "campaigns": 4,
+        "mae": 1.0935150642037172
+      },
+      {
+        "administrative_unit_key": 297,
+        "campaigns": 4,
+        "mae": 1.2860265687786399
+      },
+      {
+        "administrative_unit_key": 304,
+        "campaigns": 4,
+        "mae": 1.1646079010902812
+      },
+      {
+        "administrative_unit_key": 306,
+        "campaigns": 4,
+        "mae": 1.118386503097636
+      },
+      {
+        "administrative_unit_key": 307,
+        "campaigns": 4,
+        "mae": 1.7153058543919149
+      },
+      {
+        "administrative_unit_key": 308,
+        "campaigns": 4,
+        "mae": 2.5581447535362467
+      },
+      {
+        "administrative_unit_key": 311,
+        "campaigns": 4,
+        "mae": 1.8856253957939961
+      },
+      {
+        "administrative_unit_key": 313,
+        "campaigns": 4,
+        "mae": 0.5906744826995953
+      },
+      {
+        "administrative_unit_key": 314,
+        "campaigns": 4,
+        "mae": 0.897154584108086
+      },
+      {
+        "administrative_unit_key": 318,
+        "campaigns": 4,
+        "mae": 2.722910991908609
+      },
+      {
+        "administrative_unit_key": 320,
+        "campaigns": 4,
+        "mae": 3.5462246604529657
+      },
+      {
+        "administrative_unit_key": 321,
+        "campaigns": 4,
+        "mae": 2.4158619977969034
+      },
+      {
+        "administrative_unit_key": 322,
+        "campaigns": 4,
+        "mae": 3.2501497433475746
+      },
+      {
+        "administrative_unit_key": 323,
+        "campaigns": 4,
+        "mae": 0.5469629791476142
+      },
+      {
+        "administrative_unit_key": 324,
+        "campaigns": 4,
+        "mae": 2.400163438125067
+      },
+      {
+        "administrative_unit_key": 325,
+        "campaigns": 4,
+        "mae": 0.5900988219624567
+      },
+      {
+        "administrative_unit_key": 362,
+        "campaigns": 4,
+        "mae": 2.1362323566470205
+      },
+      {
+        "administrative_unit_key": 363,
+        "campaigns": 4,
+        "mae": 2.094041904521137
+      },
+      {
+        "administrative_unit_key": 364,
+        "campaigns": 4,
+        "mae": 2.7253513991457328
+      },
+      {
+        "administrative_unit_key": 365,
+        "campaigns": 4,
+        "mae": 2.4124291656821244
+      },
+      {
+        "administrative_unit_key": 366,
+        "campaigns": 4,
+        "mae": 2.425076834050472
+      },
+      {
+        "administrative_unit_key": 367,
+        "campaigns": 4,
+        "mae": 1.647170402824739
+      },
+      {
+        "administrative_unit_key": 368,
+        "campaigns": 4,
+        "mae": 1.4504673115773867
+      },
+      {
+        "administrative_unit_key": 369,
+        "campaigns": 4,
+        "mae": 1.9992671197510292
+      },
+      {
+        "administrative_unit_key": 370,
+        "campaigns": 4,
+        "mae": 2.2162326006716273
+      },
+      {
+        "administrative_unit_key": 371,
+        "campaigns": 4,
+        "mae": 2.8156613562728534
+      },
+      {
+        "administrative_unit_key": 372,
+        "campaigns": 4,
+        "mae": 2.6177186763566556
+      },
+      {
+        "administrative_unit_key": 373,
+        "campaigns": 4,
+        "mae": 1.6176494648696615
+      },
+      {
+        "administrative_unit_key": 374,
+        "campaigns": 4,
+        "mae": 2.413660980511101
+      },
+      {
+        "administrative_unit_key": 375,
+        "campaigns": 4,
+        "mae": 2.681369660486176
+      },
+      {
+        "administrative_unit_key": 376,
+        "campaigns": 4,
+        "mae": 2.9196804319971927
+      },
+      {
+        "administrative_unit_key": 377,
+        "campaigns": 4,
+        "mae": 1.8855866693391716
+      },
+      {
+        "administrative_unit_key": 378,
+        "campaigns": 4,
+        "mae": 2.071816012137038
+      },
+      {
+        "administrative_unit_key": 408,
+        "campaigns": 4,
+        "mae": 0.9176773121523998
+      },
+      {
+        "administrative_unit_key": 409,
+        "campaigns": 3,
+        "mae": 0.8714668477441853
+      },
+      {
+        "administrative_unit_key": 411,
+        "campaigns": 4,
+        "mae": 1.6010970661356
+      },
+      {
+        "administrative_unit_key": 412,
+        "campaigns": 4,
+        "mae": 1.8614455814789035
+      },
+      {
+        "administrative_unit_key": 413,
+        "campaigns": 4,
+        "mae": 1.7634237355283107
+      },
+      {
+        "administrative_unit_key": 414,
+        "campaigns": 4,
+        "mae": 2.1798097754157544
+      },
+      {
+        "administrative_unit_key": 415,
+        "campaigns": 4,
+        "mae": 1.1345841195094095
+      },
+      {
+        "administrative_unit_key": 418,
+        "campaigns": 4,
+        "mae": 1.897496718507825
+      },
+      {
+        "administrative_unit_key": 419,
+        "campaigns": 4,
+        "mae": 1.5934604183453802
+      },
+      {
+        "administrative_unit_key": 421,
+        "campaigns": 4,
+        "mae": 1.864499776091983
+      },
+      {
+        "administrative_unit_key": 423,
+        "campaigns": 4,
+        "mae": 1.2622440475202747
+      },
+      {
+        "administrative_unit_key": 425,
+        "campaigns": 4,
+        "mae": 1.1886626944629675
+      },
+      {
+        "administrative_unit_key": 426,
+        "campaigns": 4,
+        "mae": 1.625655765154068
+      },
+      {
+        "administrative_unit_key": 427,
+        "campaigns": 4,
+        "mae": 1.2885017511091437
+      },
+      {
+        "administrative_unit_key": 428,
+        "campaigns": 4,
+        "mae": 2.1291636217105827
+      },
+      {
+        "administrative_unit_key": 451,
+        "campaigns": 4,
+        "mae": 1.2188123834875744
+      },
+      {
+        "administrative_unit_key": 453,
+        "campaigns": 4,
+        "mae": 1.8719487482426629
+      },
+      {
+        "administrative_unit_key": 454,
+        "campaigns": 4,
+        "mae": 1.7190948787372524
+      },
+      {
+        "administrative_unit_key": 455,
+        "campaigns": 4,
+        "mae": 1.7023143837804895
+      },
+      {
+        "administrative_unit_key": 456,
+        "campaigns": 4,
+        "mae": 1.268809627529543
+      },
+      {
+        "administrative_unit_key": 457,
+        "campaigns": 4,
+        "mae": 1.2188214352980196
+      },
+      {
+        "administrative_unit_key": 458,
+        "campaigns": 4,
+        "mae": 2.015019995994696
+      },
+      {
+        "administrative_unit_key": 459,
+        "campaigns": 4,
+        "mae": 2.038362360215804
+      },
+      {
+        "administrative_unit_key": 467,
+        "campaigns": 4,
+        "mae": 0.8147423801615667
+      },
+      {
+        "administrative_unit_key": 468,
+        "campaigns": 4,
+        "mae": 1.080413385572074
+      },
+      {
+        "administrative_unit_key": 469,
+        "campaigns": 4,
+        "mae": 1.1827310887159455
+      },
+      {
+        "administrative_unit_key": 470,
+        "campaigns": 4,
+        "mae": 1.3821716661644463
+      },
+      {
+        "administrative_unit_key": 471,
+        "campaigns": 4,
+        "mae": 1.8624376164891958
+      },
+      {
+        "administrative_unit_key": 472,
+        "campaigns": 4,
+        "mae": 1.2429581904153186
+      },
+      {
+        "administrative_unit_key": 473,
+        "campaigns": 4,
+        "mae": 0.3952796246774348
+      },
+      {
+        "administrative_unit_key": 474,
+        "campaigns": 4,
+        "mae": 1.0498370146756533
+      },
+      {
+        "administrative_unit_key": 475,
+        "campaigns": 4,
+        "mae": 0.5975100819207342
+      },
+      {
+        "administrative_unit_key": 476,
+        "campaigns": 4,
+        "mae": 0.856065652960612
+      },
+      {
+        "administrative_unit_key": 477,
+        "campaigns": 4,
+        "mae": 1.3828180634429297
+      },
+      {
+        "administrative_unit_key": 478,
+        "campaigns": 4,
+        "mae": 1.449354877742611
+      },
+      {
+        "administrative_unit_key": 479,
+        "campaigns": 4,
+        "mae": 1.2813508722702962
+      },
+      {
+        "administrative_unit_key": 480,
+        "campaigns": 4,
+        "mae": 0.755905809996653
+      },
+      {
+        "administrative_unit_key": 481,
+        "campaigns": 4,
+        "mae": 0.6760678577463933
+      },
+      {
+        "administrative_unit_key": 482,
+        "campaigns": 4,
+        "mae": 0.9706624578224929
+      },
+      {
+        "administrative_unit_key": 483,
+        "campaigns": 4,
+        "mae": 1.3045079489991172
+      },
+      {
+        "administrative_unit_key": 484,
+        "campaigns": 4,
+        "mae": 1.2465104444302635
+      },
+      {
+        "administrative_unit_key": 485,
+        "campaigns": 4,
+        "mae": 0.8348636356147009
+      },
+      {
+        "administrative_unit_key": 487,
+        "campaigns": 4,
+        "mae": 1.8017152482994927
+      },
+      {
+        "administrative_unit_key": 488,
+        "campaigns": 4,
+        "mae": 1.6745838548648995
+      },
+      {
+        "administrative_unit_key": 490,
+        "campaigns": 4,
+        "mae": 1.2345435668545488
+      },
+      {
+        "administrative_unit_key": 491,
+        "campaigns": 4,
+        "mae": 0.6724235386265298
+      },
+      {
+        "administrative_unit_key": 492,
+        "campaigns": 4,
+        "mae": 1.894879988715807
+      },
+      {
+        "administrative_unit_key": 493,
+        "campaigns": 4,
+        "mae": 1.0884069586464549
+      },
+      {
+        "administrative_unit_key": 494,
+        "campaigns": 4,
+        "mae": 1.7090340723392803
+      },
+      {
+        "administrative_unit_key": 495,
+        "campaigns": 4,
+        "mae": 1.473059802959548
+      },
+      {
+        "administrative_unit_key": 496,
+        "campaigns": 4,
+        "mae": 1.5895021024802383
+      },
+      {
+        "administrative_unit_key": 497,
+        "campaigns": 4,
+        "mae": 1.8660613609691152
+      },
+      {
+        "administrative_unit_key": 498,
+        "campaigns": 4,
+        "mae": 2.112471628635622
+      },
+      {
+        "administrative_unit_key": 499,
+        "campaigns": 4,
+        "mae": 1.632356593322736
+      },
+      {
+        "administrative_unit_key": 500,
+        "campaigns": 4,
+        "mae": 1.722364074620946
+      },
+      {
+        "administrative_unit_key": 501,
+        "campaigns": 4,
+        "mae": 1.8428491332120471
+      },
+      {
+        "administrative_unit_key": 502,
+        "campaigns": 4,
+        "mae": 1.6169283801835612
+      },
+      {
+        "administrative_unit_key": 503,
+        "campaigns": 4,
+        "mae": 1.3219767482821978
+      },
+      {
+        "administrative_unit_key": 504,
+        "campaigns": 2,
+        "mae": 2.9440875603005443
+      },
+      {
+        "administrative_unit_key": 505,
+        "campaigns": 4,
+        "mae": 0.9709957713414996
+      },
+      {
+        "administrative_unit_key": 506,
+        "campaigns": 3,
+        "mae": 2.271875663007909
+      },
+      {
+        "administrative_unit_key": 507,
+        "campaigns": 4,
+        "mae": 1.8814876206282751
+      },
+      {
+        "administrative_unit_key": 508,
+        "campaigns": 4,
+        "mae": 2.1303488418608785
+      },
+      {
+        "administrative_unit_key": 509,
+        "campaigns": 4,
+        "mae": 1.1190430495617976
+      },
+      {
+        "administrative_unit_key": 511,
+        "campaigns": 4,
+        "mae": 1.3144448197971823
+      },
+      {
+        "administrative_unit_key": 512,
+        "campaigns": 4,
+        "mae": 0.5569087379982529
+      },
+      {
+        "administrative_unit_key": 513,
+        "campaigns": 4,
+        "mae": 1.2793482056744594
+      },
+      {
+        "administrative_unit_key": 515,
+        "campaigns": 4,
+        "mae": 0.7219968243452728
+      },
+      {
+        "administrative_unit_key": 516,
+        "campaigns": 4,
+        "mae": 0.8343652860902178
+      },
+      {
+        "administrative_unit_key": 519,
+        "campaigns": 4,
+        "mae": 0.6409781532545493
+      },
+      {
+        "administrative_unit_key": 521,
+        "campaigns": 4,
+        "mae": 0.4624843344318448
+      },
+      {
+        "administrative_unit_key": 522,
+        "campaigns": 4,
+        "mae": 0.5286291626603943
+      },
+      {
+        "administrative_unit_key": 527,
+        "campaigns": 4,
+        "mae": 0.42253730795034916
+      },
+      {
+        "administrative_unit_key": 528,
+        "campaigns": 4,
+        "mae": 1.5912205414758975
+      },
+      {
+        "administrative_unit_key": 530,
+        "campaigns": 4,
+        "mae": 0.29386375602953363
+      }
+    ],
+    "status": "not_pristine; this period was previously inspected during feature engineering"
+  },
+  "model_artifact": "C:\\Users\\facu\\Documents\\proyecto_campo\\models\\maize_yield_cutoff50.joblib",
+  "model_comparison_table": "model_comparison_results",
+  "hyperparameter_tuning_performed": false,
+  "spatial_holdout_performed": false,
+  "final_deployment_model": false
+}

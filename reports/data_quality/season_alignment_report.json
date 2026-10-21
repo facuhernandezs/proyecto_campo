@@ -1,0 +1,244 @@
+{
+  "status": "PASS_WITH_WARNINGS",
+  "prediction_definition": {
+    "target": "final yield",
+    "training_observation_grain": "administrative unit x crop-season label",
+    "forecast_checkpoint": "midpoint of local static sos/eos calendar",
+    "forecast_horizon": "end of crop season"
+  },
+  "decisions": [
+    "Parse the start year from planting_year labels of the form YYYY/YY.",
+    "Map SOS to the first year in planting_year; map EOS to that year unless eos < sos, then use the following year.",
+    "Round fractional DOY to the nearest calendar day (floor(doy + 0.5)); retain source SOS/EOS unchanged.",
+    "Set cutoff to start_date plus floor(season_duration_days / 2).",
+    "Use early/mid/late thirds as generic season phases, not named phenological stages.",
+    "Retain planting_date/harvest_date source labels, but do not parse them as exact dates because their day-level semantics are undocumented.",
+    "Treat source date as an availability proxy because no publication timestamp is supplied.",
+    "Do not replace missing crop calendars with a national or neighboring-region calendar."
+  ],
+  "assumptions": [
+    "The first year in planting_year is the calendar year of SOS; local labels all imply harvest_year = start_year + 1.",
+    "Static SOS/EOS are a typical seasonal window and approximate each historical campaign.",
+    "Harvest date is not equated with EOS; EOS is the end of growing season.",
+    "Observation date is used as the information cutoff proxy; publication latency is not represented in the source files."
+  ],
+  "checks": {
+    "yield_rows": 17115,
+    "mapped_yield_rows": 16887,
+    "missing_crop_calendar_yield_rows": 228,
+    "yield_admin_units_missing_crop_calendar": 21,
+    "invalid_calendar_or_season_label_rows": 0,
+    "overlapping_campaign_intervals": 0,
+    "static_crop_calendar_profile": {
+      "admin_units": 459,
+      "crosses_calendar_year": 437,
+      "same_calendar_year": 22,
+      "min_duration_doy": 52.0,
+      "median_duration_doy": 234.04299999999998,
+      "max_duration_doy": 352.598
+    },
+    "yield_midseason_view_rows": 17115,
+    "season_duration_days": {
+      "min": 52,
+      "median": 234.0,
+      "max": 353
+    },
+    "crosses_calendar_year_admin_seasons": 16383,
+    "same_calendar_year_admin_seasons": 504,
+    "calendar_end_year_differs_from_harvest_year_rows": 504,
+    "date_label_harvest_year_mismatches": 0
+  },
+  "temporal_observation_views": {
+    "meteorology": {
+      "input_rows": 3855600,
+      "view_rows": 3855600,
+      "observations_inside_campaign": 1481143,
+      "observations_on_or_before_cutoff": 731190,
+      "observations_after_cutoff": 749953,
+      "multiply_mapped_observation_keys": 0,
+      "yield_admin_units_with_calendar": 422,
+      "admin_units_with_observations_inside_campaign": 320,
+      "admin_units_without_observations_inside_campaign": 102,
+      "yield_campaign_windows_with_observations": 6493,
+      "observation_mapping_status_counts": {
+        "IN_CAMPAIGN": 1481143,
+        "OUTSIDE_CAMPAIGN_WINDOW": 2063657,
+        "NO_YIELD_CAMPAIGN": 310800
+      },
+      "admin_units_by_mapping_status": {
+        "IN_CAMPAIGN": 320,
+        "NO_YIELD_CAMPAIGN": 37,
+        "OUTSIDE_CAMPAIGN_WINDOW": 422
+      },
+      "season_phase_counts": {
+        "late": 503163,
+        "mid": 495242,
+        "early": 482738
+      },
+      "date_is_availability_proxy": true
+    },
+    "soil_moisture": {
+      "input_rows": 3498204,
+      "view_rows": 3498204,
+      "observations_inside_campaign": 1351309,
+      "observations_on_or_before_cutoff": 663462,
+      "observations_after_cutoff": 687847,
+      "multiply_mapped_observation_keys": 0,
+      "yield_admin_units_with_calendar": 422,
+      "admin_units_with_observations_inside_campaign": 319,
+      "admin_units_without_observations_inside_campaign": 103,
+      "yield_campaign_windows_with_observations": 5975,
+      "observation_mapping_status_counts": {
+        "OUTSIDE_CAMPAIGN_WINDOW": 1871927,
+        "IN_CAMPAIGN": 1351309,
+        "NO_YIELD_CAMPAIGN": 274968
+      },
+      "admin_units_by_mapping_status": {
+        "NO_YIELD_CAMPAIGN": 36,
+        "IN_CAMPAIGN": 319,
+        "OUTSIDE_CAMPAIGN_WINDOW": 422
+      },
+      "season_phase_counts": {
+        "late": 462748,
+        "mid": 448154,
+        "early": 440407
+      },
+      "date_is_availability_proxy": true
+    },
+    "ndvi": {
+      "input_rows": 478040,
+      "view_rows": 478040,
+      "observations_inside_campaign": 186284,
+      "observations_on_or_before_cutoff": 93736,
+      "observations_after_cutoff": 92548,
+      "multiply_mapped_observation_keys": 0,
+      "yield_admin_units_with_calendar": 422,
+      "admin_units_with_observations_inside_campaign": 320,
+      "admin_units_without_observations_inside_campaign": 102,
+      "yield_campaign_windows_with_observations": 6493,
+      "observation_mapping_status_counts": {
+        "IN_CAMPAIGN": 186284,
+        "OUTSIDE_CAMPAIGN_WINDOW": 254684,
+        "NO_YIELD_CAMPAIGN": 37072
+      },
+      "admin_units_by_mapping_status": {
+        "NO_YIELD_CAMPAIGN": 37,
+        "OUTSIDE_CAMPAIGN_WINDOW": 422,
+        "IN_CAMPAIGN": 320
+      },
+      "season_phase_counts": {
+        "early": 60514,
+        "late": 61697,
+        "mid": 64073
+      },
+      "date_is_availability_proxy": true
+    },
+    "fpar": {
+      "input_rows": 380052,
+      "view_rows": 380052,
+      "observations_inside_campaign": 146820,
+      "observations_on_or_before_cutoff": 71840,
+      "observations_after_cutoff": 74980,
+      "multiply_mapped_observation_keys": 0,
+      "yield_admin_units_with_calendar": 422,
+      "admin_units_with_observations_inside_campaign": 320,
+      "admin_units_without_observations_inside_campaign": 102,
+      "yield_campaign_windows_with_observations": 6493,
+      "observation_mapping_status_counts": {
+        "IN_CAMPAIGN": 146820,
+        "OUTSIDE_CAMPAIGN_WINDOW": 202596,
+        "NO_YIELD_CAMPAIGN": 30636
+      },
+      "admin_units_by_mapping_status": {
+        "IN_CAMPAIGN": 320,
+        "NO_YIELD_CAMPAIGN": 37,
+        "OUTSIDE_CAMPAIGN_WINDOW": 422
+      },
+      "season_phase_counts": {
+        "late": 50102,
+        "mid": 49272,
+        "early": 47446
+      },
+      "date_is_availability_proxy": true
+    }
+  },
+  "findings": [
+    {
+      "severity": "warning",
+      "status": "unmapped",
+      "issue": "Some yield admin-season rows have no crop_calendar entry.",
+      "count": 228,
+      "admin_units": 21,
+      "action": "Keep those target rows; their midseason cutoff and season phase remain null."
+    },
+    {
+      "severity": "info",
+      "status": "documented",
+      "issue": "Non-wrapping calendars can end in the start year while yield harvest is reported in the following year.",
+      "count": 504,
+      "action": "Keep separate SOS/EOS growing-season dates from yield harvest dates."
+    },
+    {
+      "severity": "info",
+      "status": "no_target_match",
+      "issue": "meteorology contains admin units without yield campaigns.",
+      "admin_units": 37,
+      "observations": 310800,
+      "action": "Retain source observations; they cannot form supervised yield rows without target data."
+    },
+    {
+      "severity": "warning",
+      "status": "no_observation_in_window",
+      "issue": "meteorology has no in-campaign observations for some yield admin units with calendars.",
+      "admin_units": 102,
+      "action": "Distinguish source temporal coverage from within-season observation gaps before creating training rows; do not impute here."
+    },
+    {
+      "severity": "info",
+      "status": "no_target_match",
+      "issue": "soil_moisture contains admin units without yield campaigns.",
+      "admin_units": 36,
+      "observations": 274968,
+      "action": "Retain source observations; they cannot form supervised yield rows without target data."
+    },
+    {
+      "severity": "warning",
+      "status": "no_observation_in_window",
+      "issue": "soil_moisture has no in-campaign observations for some yield admin units with calendars.",
+      "admin_units": 103,
+      "action": "Distinguish source temporal coverage from within-season observation gaps before creating training rows; do not impute here."
+    },
+    {
+      "severity": "info",
+      "status": "no_target_match",
+      "issue": "ndvi contains admin units without yield campaigns.",
+      "admin_units": 37,
+      "observations": 37072,
+      "action": "Retain source observations; they cannot form supervised yield rows without target data."
+    },
+    {
+      "severity": "warning",
+      "status": "no_observation_in_window",
+      "issue": "ndvi has no in-campaign observations for some yield admin units with calendars.",
+      "admin_units": 102,
+      "action": "Distinguish source temporal coverage from within-season observation gaps before creating training rows; do not impute here."
+    },
+    {
+      "severity": "info",
+      "status": "no_target_match",
+      "issue": "fpar contains admin units without yield campaigns.",
+      "admin_units": 37,
+      "observations": 30636,
+      "action": "Retain source observations; they cannot form supervised yield rows without target data."
+    },
+    {
+      "severity": "warning",
+      "status": "no_observation_in_window",
+      "issue": "fpar has no in-campaign observations for some yield admin units with calendars.",
+      "admin_units": 102,
+      "action": "Distinguish source temporal coverage from within-season observation gaps before creating training rows; do not impute here."
+    }
+  ],
+  "feature_aggregation_performed": false,
+  "training_mart_created": false
+}

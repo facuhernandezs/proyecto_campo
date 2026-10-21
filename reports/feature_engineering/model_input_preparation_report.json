@@ -1,0 +1,79 @@
+{
+  "status": "PREPARED_CANDIDATE_NOT_TRAINED",
+  "dataset_bundle": {
+    "dataset": "CY-Bench v1.10",
+    "crop": "maize",
+    "country_code": "AR",
+    "target": "yield",
+    "target_unit": "t ha-1",
+    "prediction_unit": "administrative unit x crop-season",
+    "cutoff_candidates": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "availability_rule": "Use source observations with observation_date <= local cutoff_date; source date is an availability proxy because publication timestamps are absent."
+  },
+  "database": "C:\\Users\\facu\\Documents\\proyecto_campo\\data\\processed\\star_schema\\maize_star_schema.duckdb",
+  "table": "model_input_candidates_cutoff_50",
+  "row_grain": "one administrative unit x crop season x selected 50% forecast checkpoint",
+  "cutoff_pct": 50,
+  "rows": 5710,
+  "unique_admin_season_keys": 5710,
+  "target_column": "target_yield",
+  "target_unit": "t ha-1",
+  "zero_yield_rows_preserved": 111,
+  "unmapped_campaigns_excluded": 49,
+  "selected_features_from_prior_validation": [
+    "season_duration_days",
+    "tmax_max_to_cutoff",
+    "diurnal_range_mean_to_cutoff",
+    "cwb_sum_to_cutoff",
+    "et0_sum_to_cutoff",
+    "tavg_mean_last_30d",
+    "cwb_sum_last_30d",
+    "latest_ssm",
+    "latest_rsm",
+    "rsm_mean_last_30d",
+    "latest_ndvi",
+    "ndvi_change_since_first_observation",
+    "latest_fpar",
+    "fpar_mean_to_cutoff",
+    "crop_area_percentage",
+    "bulk_density",
+    "available_water_capacity_cm_m"
+  ],
+  "additional_candidate_columns_not_evaluated": [
+    "latitude_deg",
+    "longitude_deg",
+    "drainage_class_code"
+  ],
+  "evaluated_candidate_columns_not_selected": [],
+  "additional_candidate_null_rows": {
+    "available_water_capacity_cm_m": 0,
+    "drainage_class_code": 0,
+    "centroid_coordinates": 0
+  },
+  "production_area_features_excluded": [
+    "production",
+    "harvest_area",
+    "planted_area"
+  ],
+  "precipitation_and_vpd_excluded": "prec remains provisional; VPD unit remains unresolved",
+  "scenario_code": "mm0; assumed",
+  "date_availability_assumption": "observation_date <= prediction_date; source publication timestamps are absent",
+  "feature_evaluation_performed_now": false,
+  "model_training_performed": false,
+  "metadata_sync": {
+    "metadata_sha256": "510c244993f0eebcdbb2a827b7b0bcc81ca4e6b7287e3b390e05cd9233eacb11",
+    "source_variable_metadata_rows": 26,
+    "integration_status": "PASS_WITH_WARNINGS"
+  },
+  "quality_report_status": "PASS_WITH_WARNINGS",
+  "target_yield_profile": {
+    "min": 0.0,
+    "max": 14.933,
+    "zero_rows": 111
+  },
+  "column_metadata_table": "model_input_column_metadata"
+}

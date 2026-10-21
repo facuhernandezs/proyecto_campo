@@ -1,0 +1,1182 @@
+{
+  "status": "PASS_WITH_WARNINGS",
+  "preparation_id": "97973cdb98bc42a294bcf348ad03847b",
+  "source_metadata_registry": "C:\\Users\\facu\\Documents\\proyecto_campo\\metadata\\data_dictionary.json",
+  "source_metadata_sha256": "510c244993f0eebcdbb2a827b7b0bcc81ca4e6b7287e3b390e05cd9233eacb11",
+  "dataset_bundle": {
+    "name": "CY-Bench",
+    "release": "1.10",
+    "release_attribution": "user-declared; local archive checksum not compared",
+    "crop": "maize",
+    "country": "Argentina",
+    "country_code": "AR",
+    "local_folder": "AR/maize",
+    "folder_convention": "ISO 3166-1 alpha-2 country code / crop; variable_croptype_country.csv",
+    "release_record": "https://zenodo.org/records/17279151",
+    "repository": "https://github.com/WUR-AI/AgML-CY-Bench"
+  },
+  "version_history": {
+    "1.0": "Dataset submitted to NeurIPS Datasets and Benchmarks; paper discussion: https://openreview.net/forum?id=jkJDNG468g#discussion",
+    "1.1-1.2": "Corrected column-name issues and adm_id mismatches between yield output and predictor inputs.",
+    "1.3": "Added location centroids and administrative polygons; the local CSV extract contains centroid fields, not polygon geometry.",
+    "1.4": "Updated FPAR data for 2023.",
+    "1.5": "Fixed crop-calendar data.",
+    "1.6": "Fixed NDVI time series.",
+    "1.7": "Stored values at three-decimal precision to reduce size.",
+    "1.8": "Filtered invalid yield values.",
+    "1.9": "Added VPD and location; switched ET0 from AQUASTAT-FAO to AgERA5 2.0 (previously AgERA5 1.1).",
+    "1.10": "Added region_area to location, added crop_mask, and fixed an Australia yield error."
+  },
+  "management_scenario": {
+    "code": "mm0",
+    "description": "Maize monoculture with no fertilizer applied",
+    "status": "assumed",
+    "note": "User-provided interpretation of mm0; confirm against dataset documentation.",
+    "scope": "maize source bundle"
+  },
+  "raw_sources_modified": false,
+  "transformations_applied": [
+    "identifier whitespace/case normalization",
+    "YYYYMMDD codes parsed to DATE in prepared copies"
+  ],
+  "imputation_performed": false,
+  "unit_conversion_performed": false,
+  "datasets": {
+    "yield": {
+      "dataset": "yield",
+      "source_file": "yield_maize_AR.csv",
+      "rows": 17115,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "country_code",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "planting_year",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "planting_date",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "harvest_year",
+          "dtype": "BIGINT"
+        },
+        {
+          "name": "harvest_date",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "yield",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "production",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "harvest_area",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "planted_area",
+          "dtype": "DOUBLE"
+        }
+      ],
+      "grain_hypothesis": "adm_id x crop-season label (planting_year)",
+      "candidate_key": [
+        "crop_name",
+        "adm_id",
+        "planting_year"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 443,
+      "missing_values": {
+        "crop_name": 0,
+        "country_code": 0,
+        "adm_id": 0,
+        "planting_year": 0,
+        "planting_date": 0,
+        "harvest_year": 0,
+        "harvest_date": 0,
+        "yield": 0,
+        "production": 0,
+        "harvest_area": 0,
+        "planted_area": 0
+      },
+      "temporal_coverage": null,
+      "numeric_ranges_and_zeros": {
+        "harvest_year": {
+          "min": 1970,
+          "max": 2023,
+          "zero_rows": 0
+        },
+        "yield": {
+          "min": 0.0,
+          "max": 33.333,
+          "zero_rows": 542
+        },
+        "production": {
+          "min": 0.0,
+          "max": 3412500.0,
+          "zero_rows": 542
+        },
+        "harvest_area": {
+          "min": 0.0,
+          "max": 525000.0,
+          "zero_rows": 536
+        },
+        "planted_area": {
+          "min": 1.0,
+          "max": 563000.0,
+          "zero_rows": 0
+        }
+      },
+      "unit_status": "PARTIALLY_DOCUMENTED",
+      "metadata": {
+        "description": "End-of-season yield statistics; source varies by country/region",
+        "source": "Country- or region-specific sources; AgML-CY-Bench data_preparation references",
+        "temporal_resolution": "yearly/end of season",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "country_code": {
+            "unit_status": "not_documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "harvest_area": {
+            "definition": "harvested area",
+            "unit": null,
+            "unit_status": "unresolved"
+          },
+          "harvest_date": {
+            "unit_status": "not_documented"
+          },
+          "harvest_year": {
+            "unit_status": "not_documented"
+          },
+          "planted_area": {
+            "unit_status": "not_documented"
+          },
+          "planting_date": {
+            "unit_status": "not_documented"
+          },
+          "planting_year": {
+            "unit_status": "not_documented"
+          },
+          "production": {
+            "definition": "production",
+            "unit": null,
+            "unit_status": "unresolved"
+          },
+          "yield": {
+            "definition": "end-of-season yield",
+            "unit": "t ha-1",
+            "unit_status": "documented"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": [
+          "harvest_date",
+          "planted_area",
+          "planting_date",
+          "planting_year"
+        ]
+      }
+    },
+    "meteorology": {
+      "dataset": "meteorology",
+      "source_file": "meteo_maize_AR.csv",
+      "rows": 3855600,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "date",
+          "dtype": "DATE"
+        },
+        {
+          "name": "tmin",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "tmax",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "prec",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "rad",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "tavg",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "et0",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "vpd",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "cwb",
+          "dtype": "DOUBLE"
+        }
+      ],
+      "grain_hypothesis": "adm_id x calendar date",
+      "candidate_key": [
+        "crop_name",
+        "adm_id",
+        "date"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 459,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "date": 0,
+        "tmin": 0,
+        "tmax": 0,
+        "prec": 0,
+        "rad": 0,
+        "tavg": 0,
+        "et0": 0,
+        "vpd": 0,
+        "cwb": 0
+      },
+      "temporal_coverage": {
+        "date_min": "2001-01-01",
+        "date_max": "2023-12-31",
+        "distinct_dates": 8400,
+        "median_interval_days": 1.0,
+        "max_interval_days": 1,
+        "intervals_longer_than_one_day": 0,
+        "admins_with_gap_over_30_days": 0,
+        "admins_with_gap_over_180_days": 0
+      },
+      "numeric_ranges_and_zeros": {
+        "tmin": {
+          "min": -22.16,
+          "max": 32.386,
+          "zero_rows": 41
+        },
+        "tmax": {
+          "min": -14.594,
+          "max": 45.695,
+          "zero_rows": 0
+        },
+        "prec": {
+          "min": 0.0,
+          "max": 213.15,
+          "zero_rows": 1411863
+        },
+        "rad": {
+          "min": 0.0,
+          "max": 36839144.0,
+          "zero_rows": 2
+        },
+        "tavg": {
+          "min": -19.422,
+          "max": 38.572,
+          "zero_rows": 6
+        },
+        "et0": {
+          "min": 0.0,
+          "max": 15.102,
+          "zero_rows": 2
+        },
+        "vpd": {
+          "min": 0.0,
+          "max": 86.073,
+          "zero_rows": 40
+        },
+        "cwb": {
+          "min": -14.801,
+          "max": 211.894,
+          "zero_rows": 123
+        }
+      },
+      "unit_status": "PARTIALLY_DOCUMENTED",
+      "metadata": {
+        "description": "Daily meteorological and water-balance observations",
+        "source": "AgERA5 2.0 (Boogaard et al., 2022); ET0 is AgERA5 in v1.10 (previously AQUASTAT-FAO)",
+        "temporal_resolution": "daily",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "cwb": {
+            "definition": "crop water balance",
+            "unit": "mm",
+            "unit_status": "documented",
+            "formula": "prec - et0"
+          },
+          "date": {
+            "unit_status": "not_documented"
+          },
+          "et0": {
+            "definition": "reference evapotranspiration",
+            "unit": "mm",
+            "unit_status": "documented"
+          },
+          "prec": {
+            "definition": "precipitation",
+            "unit": "mm",
+            "unit_status": "provisional",
+            "note": "The notation mm0 is treated as the management scenario code; the millimeter unit is inferred and needs source confirmation."
+          },
+          "rad": {
+            "definition": "radiation",
+            "unit": "J m-2 day-1",
+            "unit_status": "documented"
+          },
+          "tavg": {
+            "definition": "average temperature",
+            "unit": "degC",
+            "unit_status": "documented"
+          },
+          "tmax": {
+            "definition": "maximum temperature",
+            "unit": "degC",
+            "unit_status": "documented"
+          },
+          "tmin": {
+            "definition": "minimum temperature",
+            "unit": "degC",
+            "unit_status": "documented"
+          },
+          "vpd": {
+            "definition": "vapor pressure deficit",
+            "unit": null,
+            "unit_status": "unresolved"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    },
+    "soil_moisture": {
+      "dataset": "soil_moisture",
+      "source_file": "soil_moisture_maize_AR.csv",
+      "rows": 3498204,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "date",
+          "dtype": "DATE"
+        },
+        {
+          "name": "ssm",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "rsm",
+          "dtype": "DOUBLE"
+        }
+      ],
+      "grain_hypothesis": "adm_id x calendar date",
+      "candidate_key": [
+        "crop_name",
+        "adm_id",
+        "date"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 458,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "date": 0,
+        "ssm": 0,
+        "rsm": 0
+      },
+      "temporal_coverage": {
+        "date_min": "2003-02-01",
+        "date_max": "2023-12-31",
+        "distinct_dates": 7638,
+        "median_interval_days": 1.0,
+        "max_interval_days": 2,
+        "intervals_longer_than_one_day": 458,
+        "admins_with_gap_over_30_days": 0,
+        "admins_with_gap_over_180_days": 0
+      },
+      "numeric_ranges_and_zeros": {
+        "ssm": {
+          "min": 0.175,
+          "max": 9.0,
+          "zero_rows": 0
+        },
+        "rsm": {
+          "min": 80.645,
+          "max": 450.257,
+          "zero_rows": 0
+        }
+      },
+      "unit_status": "DOCUMENTED",
+      "metadata": {
+        "description": "Surface and root-zone soil moisture",
+        "source": "GLDAS (Rodell et al., 2004)",
+        "temporal_resolution": "daily",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "date": {
+            "unit_status": "not_documented"
+          },
+          "rsm": {
+            "definition": "root-zone soil moisture",
+            "unit": "kg m-2",
+            "unit_status": "documented"
+          },
+          "ssm": {
+            "definition": "surface soil moisture",
+            "unit": "kg m-2",
+            "unit_status": "documented"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    },
+    "ndvi": {
+      "dataset": "ndvi",
+      "source_file": "ndvi_maize_AR.csv",
+      "rows": 478040,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "date",
+          "dtype": "DATE"
+        },
+        {
+          "name": "ndvi",
+          "dtype": "DOUBLE"
+        }
+      ],
+      "grain_hypothesis": "adm_id x dated vegetation observation",
+      "candidate_key": [
+        "crop_name",
+        "adm_id",
+        "date"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 459,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "date": 0,
+        "ndvi": 0
+      },
+      "temporal_coverage": {
+        "date_min": "2001-01-01",
+        "date_max": "2023-12-27",
+        "distinct_dates": 1056,
+        "median_interval_days": 8.0,
+        "max_interval_days": 205,
+        "intervals_longer_than_one_day": 477131,
+        "admins_with_gap_over_30_days": 124,
+        "admins_with_gap_over_180_days": 3
+      },
+      "numeric_ranges_and_zeros": {
+        "ndvi": {
+          "min": 0.065,
+          "max": 0.959,
+          "zero_rows": 0
+        }
+      },
+      "unit_status": "DOCUMENTED",
+      "metadata": {
+        "description": "Normalized difference vegetation index",
+        "source": "MOD09CMG (Vermote, 2015)",
+        "temporal_resolution": "approximately weekly",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "date": {
+            "unit_status": "not_documented"
+          },
+          "ndvi": {
+            "definition": "normalized difference vegetation index",
+            "unit": "dimensionless",
+            "unit_status": "documented"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    },
+    "fpar": {
+      "dataset": "fpar",
+      "source_file": "fpar_maize_AR.csv",
+      "rows": 380052,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "date",
+          "dtype": "DATE"
+        },
+        {
+          "name": "fpar",
+          "dtype": "DOUBLE"
+        }
+      ],
+      "grain_hypothesis": "adm_id x dated vegetation observation",
+      "candidate_key": [
+        "crop_name",
+        "adm_id",
+        "date"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 459,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "date": 0,
+        "fpar": 0
+      },
+      "temporal_coverage": {
+        "date_min": "2001-01-01",
+        "date_max": "2023-12-21",
+        "distinct_dates": 828,
+        "median_interval_days": 10.0,
+        "max_interval_days": 11,
+        "intervals_longer_than_one_day": 379593,
+        "admins_with_gap_over_30_days": 0,
+        "admins_with_gap_over_180_days": 0
+      },
+      "numeric_ranges_and_zeros": {
+        "fpar": {
+          "min": 0.0,
+          "max": 93.0,
+          "zero_rows": 4968
+        }
+      },
+      "unit_status": "DOCUMENTED",
+      "metadata": {
+        "description": "Fraction of absorbed photosynthetically active radiation",
+        "source": "European Commission Joint Research Centre (EC-JRC, 2024)",
+        "temporal_resolution": "dekadal: periods 1-10, 11-20, 21-31",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "date": {
+            "unit_status": "not_documented"
+          },
+          "fpar": {
+            "definition": "fraction of absorbed photosynthetically active radiation",
+            "unit": "%",
+            "unit_status": "documented"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    },
+    "soil": {
+      "dataset": "soil",
+      "source_file": "soil_maize_AR.csv",
+      "rows": 445,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "awc",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "bulk_density",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "drainage_class",
+          "dtype": "BIGINT"
+        }
+      ],
+      "grain_hypothesis": "source-specific adm_id",
+      "candidate_key": [
+        "crop_name",
+        "adm_id"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 445,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "awc": 0,
+        "bulk_density": 0,
+        "drainage_class": 0
+      },
+      "temporal_coverage": null,
+      "numeric_ranges_and_zeros": {
+        "awc": {
+          "min": 9.521,
+          "max": 19.012,
+          "zero_rows": 0
+        },
+        "bulk_density": {
+          "min": 1.156,
+          "max": 1.794,
+          "zero_rows": 0
+        },
+        "drainage_class": {
+          "min": 2,
+          "max": 6,
+          "zero_rows": 0
+        }
+      },
+      "unit_status": "DOCUMENTED",
+      "metadata": {
+        "description": "Available water capacity, bulk density, and drainage class",
+        "source": "WISE Soil database (Batjes, 2016)",
+        "temporal_resolution": "static",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "awc": {
+            "definition": "available water capacity; centimeters of available water per meter of soil depth",
+            "unit": "cm m-1",
+            "reported_unit_notation": "c m-1",
+            "unit_status": "documented",
+            "note": "Unit clarified by user as cm m-1."
+          },
+          "bulk_density": {
+            "definition": "bulk density",
+            "unit": "kg dm-3",
+            "unit_status": "documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "drainage_class": {
+            "definition": "drainage class code",
+            "unit": null,
+            "unit_status": "categorical_code",
+            "codebook_status": "unresolved"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    },
+    "crop_calendar": {
+      "dataset": "crop_calendar",
+      "source_file": "crop_calendar_maize_AR.csv",
+      "rows": 459,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "sos",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "eos",
+          "dtype": "DOUBLE"
+        }
+      ],
+      "grain_hypothesis": "source-specific adm_id",
+      "candidate_key": [
+        "crop_name",
+        "adm_id"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 459,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "sos": 0,
+        "eos": 0
+      },
+      "temporal_coverage": null,
+      "numeric_ranges_and_zeros": {
+        "sos": {
+          "min": 2.172,
+          "max": 363.997,
+          "zero_rows": 0
+        },
+        "eos": {
+          "min": 2.0,
+          "max": 355.889,
+          "zero_rows": 0
+        }
+      },
+      "unit_status": "DOCUMENTED",
+      "metadata": {
+        "description": "Start and end of growing season",
+        "source": "WorldCereal (Franch et al., 2022)",
+        "temporal_resolution": "static",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "eos": {
+            "definition": "end of crop season",
+            "unit": "day_of_year",
+            "unit_status": "documented"
+          },
+          "sos": {
+            "definition": "start of crop season",
+            "unit": "day_of_year",
+            "unit_status": "documented"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    },
+    "location": {
+      "dataset": "location",
+      "source_file": "location_maize_AR.csv",
+      "rows": 459,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "latitude",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "longitude",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "region_area",
+          "dtype": "BIGINT"
+        }
+      ],
+      "grain_hypothesis": "source-specific adm_id",
+      "candidate_key": [
+        "crop_name",
+        "adm_id"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 459,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "latitude": 0,
+        "longitude": 0,
+        "region_area": 0
+      },
+      "temporal_coverage": null,
+      "numeric_ranges_and_zeros": {
+        "latitude": {
+          "min": -46.43333,
+          "max": -22.13247,
+          "zero_rows": 0
+        },
+        "longitude": {
+          "min": -71.6,
+          "max": -53.97238,
+          "zero_rows": 0
+        },
+        "region_area": {
+          "min": 38,
+          "max": 40572,
+          "zero_rows": 0
+        }
+      },
+      "unit_status": "DOCUMENTED",
+      "metadata": {
+        "description": "Subnational unit centroid and region area",
+        "source": "CY-Bench location export; centroid attributes",
+        "temporal_resolution": "static",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          },
+          "latitude": {
+            "definition": "latitude of subnational-unit centroid",
+            "unit": "degree",
+            "unit_status": "documented"
+          },
+          "longitude": {
+            "definition": "longitude of subnational-unit centroid",
+            "unit": "degree",
+            "unit_status": "documented"
+          },
+          "region_area": {
+            "definition": "area of subnational unit",
+            "unit": "km2",
+            "unit_status": "documented"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    },
+    "crop_mask": {
+      "dataset": "crop_mask",
+      "source_file": "crop_mask_maize_AR.csv",
+      "rows": 526,
+      "columns": [
+        {
+          "name": "crop_name",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "adm_id",
+          "dtype": "VARCHAR"
+        },
+        {
+          "name": "crop_area",
+          "dtype": "DOUBLE"
+        },
+        {
+          "name": "crop_area_percentage",
+          "dtype": "DOUBLE"
+        }
+      ],
+      "grain_hypothesis": "source-specific adm_id",
+      "candidate_key": [
+        "crop_name",
+        "adm_id"
+      ],
+      "candidate_key_duplicates": {
+        "duplicate_groups": 0,
+        "excess_rows": 0
+      },
+      "distinct_adm_id": 526,
+      "missing_values": {
+        "crop_name": 0,
+        "adm_id": 0,
+        "crop_area": 0,
+        "crop_area_percentage": 0
+      },
+      "temporal_coverage": null,
+      "numeric_ranges_and_zeros": {
+        "crop_area": {
+          "min": 0.0,
+          "max": 6540.2,
+          "zero_rows": 101
+        },
+        "crop_area_percentage": {
+          "min": 0.0,
+          "max": 54.423,
+          "zero_rows": 83
+        }
+      },
+      "unit_status": "DOCUMENTED",
+      "metadata": {
+        "description": "Crop area fraction by subnational unit",
+        "source": "WorldCereal (Van Tricht et al., 2023; EC-JRC, 2024), included in CY-Bench v1.10",
+        "temporal_resolution": "static",
+        "variables": {
+          "adm_id": {
+            "unit_status": "not_documented"
+          },
+          "crop_area": {
+            "definition": "crop area within subnational unit",
+            "unit": "km2",
+            "unit_status": "documented"
+          },
+          "crop_area_percentage": {
+            "definition": "fraction of subnational-unit area covered by crop",
+            "unit": "%",
+            "unit_status": "documented"
+          },
+          "crop_name": {
+            "unit_status": "not_documented"
+          }
+        },
+        "observed_columns_not_in_supplied_schema": []
+      }
+    }
+  },
+  "schema_reconciliation": {
+    "yield": {
+      "observed_in_local_csv_but_absent_from_supplied_schema": [
+        "planting_year",
+        "planting_date",
+        "harvest_date",
+        "planted_area"
+      ]
+    },
+    "notes": [
+      "This project uses only the maize/Argentina partition at AR/maize; other crops and countries are out of scope.",
+      "The local v1.10 yield CSV includes planting_year, planting_date, harvest_date, and planted_area beyond the supplied v1.10 schema summary.",
+      "The location coordinate reference system was not provided, and polygon geometry is not present in the local CSV files."
+    ]
+  },
+  "semantic_checks": {
+    "meteorology_tmin_above_tmax": 82,
+    "meteorology_tavg_outside_tmin_tmax": 1481,
+    "crop_calendar_sos_after_eos": 437,
+    "crop_calendar_crosses_calendar_year": 437,
+    "crop_calendar_invalid_day_of_year": 0,
+    "yield_zero_yield_rows": 542,
+    "yield_zero_harvest_area_rows": 536,
+    "fpar_values_outside_percentage_range": 0,
+    "crop_mask_percentage_outside_range": 0,
+    "meteorology_cwb_formula": {
+      "formula": "cwb = prec - et0",
+      "rows": 3855600,
+      "rows_within_tolerance_0_002": 3855600,
+      "max_absolute_difference": 2.842170943040401e-14,
+      "validation_status": "VALIDATED"
+    },
+    "soil_drainage_class_codes": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "crop_mask_percentage_vs_region_area": {
+      "matched_source_ids": 459,
+      "rows_within_tolerance_0_1_percentage_points": 459,
+      "max_absolute_difference_percentage_points": 0.05318518518518517,
+      "validation_scope": "diagnostic on matching source IDs; not a conformed geography join",
+      "validation_status": "CONSISTENT_ON_OVERLAP"
+    }
+  },
+  "admin_id_overlap_diagnostics_vs_location": {
+    "yield": {
+      "source_ids": 443,
+      "ids_also_in_location": 422,
+      "ids_absent_from_location": 21,
+      "location_ids_absent_from_source": 37
+    },
+    "meteorology": {
+      "source_ids": 459,
+      "ids_also_in_location": 459,
+      "ids_absent_from_location": 0,
+      "location_ids_absent_from_source": 0
+    },
+    "soil_moisture": {
+      "source_ids": 458,
+      "ids_also_in_location": 458,
+      "ids_absent_from_location": 0,
+      "location_ids_absent_from_source": 1
+    },
+    "ndvi": {
+      "source_ids": 459,
+      "ids_also_in_location": 459,
+      "ids_absent_from_location": 0,
+      "location_ids_absent_from_source": 0
+    },
+    "fpar": {
+      "source_ids": 459,
+      "ids_also_in_location": 459,
+      "ids_absent_from_location": 0,
+      "location_ids_absent_from_source": 0
+    },
+    "soil": {
+      "source_ids": 445,
+      "ids_also_in_location": 445,
+      "ids_absent_from_location": 0,
+      "location_ids_absent_from_source": 14
+    },
+    "crop_calendar": {
+      "source_ids": 459,
+      "ids_also_in_location": 459,
+      "ids_absent_from_location": 0,
+      "location_ids_absent_from_source": 0
+    },
+    "location": {
+      "source_ids": 459,
+      "ids_also_in_location": 459,
+      "ids_absent_from_location": 0,
+      "location_ids_absent_from_source": 0
+    },
+    "crop_mask": {
+      "source_ids": 526,
+      "ids_also_in_location": 459,
+      "ids_absent_from_location": 67,
+      "location_ids_absent_from_source": 0
+    }
+  },
+  "findings": [
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "Zero values have not been given field-specific semantics.",
+      "action": "Preserve zeros; distinguish true measurements from no-crop/not-applicable states only after source confirmation."
+    },
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "Some variable units or codebooks remain provisional or unresolved.",
+      "action": "Use the variable-level metadata registry; retain unresolved fields without conversions or inferred category labels."
+    },
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "Season labels in yield do not map to daily observations through a validated crop calendar.",
+      "action": "Keep yield on dim_season and dated sources on dim_date; do not join on harvest_year/calendar year."
+    },
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "The sources cover different subsets of administrative units; location attributes are not present for every ID.",
+      "action": "Use the CY-Bench v1.10 conformed adm_id dimension and preserve null location attributes for IDs absent from location.csv."
+    },
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "Some meteorology rows have tmin > tmax.",
+      "count": 82,
+      "action": "Review source definitions/calculation; retain rows and flag for EDA."
+    },
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "Some meteorology rows have tavg outside [tmin, tmax].",
+      "count": 1481,
+      "action": "Review source definitions/calculation; do not silently recalculate tavg."
+    },
+    {
+      "severity": "info",
+      "status": "interpreted_from_documented_DOY_semantics",
+      "issue": "The crop-calendar season crosses the calendar-year boundary when sos > eos.",
+      "count": 437,
+      "action": "A crosses_calendar_year flag is safe; do not synthesize actual calendar dates without a reference year."
+    },
+    {
+      "severity": "info",
+      "status": "validated",
+      "issue": "cwb matches prec - et0 within floating-point/rounding tolerance.",
+      "formula": "cwb = prec - et0",
+      "rows": 3855600,
+      "rows_within_tolerance_0_002": 3855600,
+      "max_absolute_difference": 2.842170943040401e-14,
+      "validation_status": "VALIDATED"
+    },
+    {
+      "severity": "info",
+      "status": "consistent_on_overlap",
+      "issue": "crop_area_percentage agrees with crop_area / region_area on IDs present in both files.",
+      "matched_source_ids": 459,
+      "rows_within_tolerance_0_1_percentage_points": 459,
+      "max_absolute_difference_percentage_points": 0.05318518518518517,
+      "validation_scope": "diagnostic on matching source IDs; not a conformed geography join",
+      "validation_status": "CONSISTENT_ON_OVERLAP"
+    },
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "soil_moisture has observed intervals longer than one day.",
+      "max_interval_days": 2,
+      "admins_with_gap_over_30_days": 0,
+      "admins_with_gap_over_180_days": 0,
+      "action": "Treat as observation cadence/gap information, not as null values; confirm expected acquisition schedule before resampling."
+    },
+    {
+      "severity": "warning",
+      "status": "open",
+      "issue": "ndvi has observed intervals longer than one day.",
+      "max_interval_days": 205,
+      "admins_with_gap_over_30_days": 124,
+      "admins_with_gap_over_180_days": 3,
+      "action": "Treat as observation cadence/gap information, not as null values; confirm expected acquisition schedule before resampling."
+    },
+    {
+      "severity": "info",
+      "status": "open",
+      "issue": "fpar has observed intervals longer than one day.",
+      "max_interval_days": 11,
+      "admins_with_gap_over_30_days": 0,
+      "admins_with_gap_over_180_days": 0,
+      "action": "Treat as observation cadence/gap information, not as null values; confirm expected acquisition schedule before resampling."
+    }
+  ]
+}
